@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="height=1080, width=1920, user-scalable=no" />
+<title>LOTTE SUPER</title>
+<style>
+* {margin:0;padding:0}
+img {border:none}
+</style>
+<script type="text/javascript" src="https://svcapi.gigagenie.ai/sdk/v1.0/js/gigagenie.js"></script>
+<script>
+var options={};
+function init(){
+	options={};
+	options.apikey="RTUwMDA4MzZ8R0JPWERFVk18MTUxMzA1NjA0NjY5Ng==";
+	options.keytype="GBOXDEVM"; // 개발자 모드를 설정하고 사용하세요.
+	//options.keytype="GBOXCOMM"; // 개발자센터에서 승인이 되어야 사용하실 수 있습니다.
+	gigagenie.init(options,function(result_cd,result_msg,extra){
+		if(result_cd===200){
+			startNineNineTTL();
+        };
+        console.log(extra);
+	});
+}
+function startNineNineTTL(){
+    var options={};
+    
+    options.mode = 2;
+	options.voicemsg="안녕하세요[P2]롯데슈퍼[P2]초L[P2]세이브우유[P2]930ML입니다[P3]이[P2]상품은[P2]3개[P2]이상[P2]구매[P2]가능해요[P3]장바구니에[P2]1번[P2]상품[P2]4개를[P2]담았어요";
+	gigagenie.voice.getVoiceText(options,function(result_cd,result_msg,extra){
+		if(result_cd===200){
+			document.getElementById("sp").innerHTML = options.voicemsg;
+
+			gigagenie.voice.onVoiceCommand=function(event){
+                console.log('hi');
+                console.log(event);
+				switch(event){
+                    case 'nextPage':
+                        console.log('called nextPage');
+						// location.href="http://image.lottesuper.co.kr/static-root/image/gigagenie/test/more.html";
+						break;
+					case 'prevPage':
+						history.go(-1);
+			            break;
+					default:
+						break;
+				}
+			};
+		} else {
+			//extra.reason 에 voice 오류 전달.
+		};
+	});
+}
+
+
+</script>
+
+</head>
+<body onload=init()>
+<input type="text" id="uname" name="name" style="height:50px"><button onclick="startNineNineTTL();">Submit</button>
+<div id="sp" style="width:100%; height:50px"></div>
+
+
+<a href="http://image.lottesuper.co.kr/static-root/image/gigagenie/test/more.html"><img src="http://image.lottesuper.co.kr/static-root/image/gigagenie/test/detail.png" alt="" /></a>
+</body>
+</html>
