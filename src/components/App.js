@@ -1,16 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 import GigaGenie from './GigaGenie';
-import Detail from './Detail';
-import logo from './logo.svg';
-import './App.css';
+import GoodsDetail from './GoodsDetail/GoodsHeader';
 
 class App extends Component {
   render() {
     return (
       <Fragment>
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">
@@ -19,7 +16,7 @@ class App extends Component {
         <Link to={`${process.env.REACT_APP_PUBLIC_PATH}/detail`}>상세화면</Link>
         <Switch>
           <Route exact path={`${process.env.REACT_APP_PUBLIC_PATH}`} component={GigaGenie} />
-          <Route path={`${process.env.REACT_APP_PUBLIC_PATH}/detail`} component={Detail} />
+          <Route path={`${process.env.REACT_APP_PUBLIC_PATH}/detail`} component={GoodsDetail} />
         </Switch>
       </Fragment>
     );

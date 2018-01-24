@@ -34,6 +34,13 @@ class GigaGenie extends Component {
       console.log(result_msg);
       if(result_cd === 200) {
         console.log("init started");
+        this.gigagenie.appinfo.getContainerId(null, function(result_cds, result_msgs, extras) {
+          if(result_cds === 200) {
+              console.log(extras);
+          } else {
+              console.log("getContainerId is fail.");
+          }
+        });
       }
 
       console.log(extra);
