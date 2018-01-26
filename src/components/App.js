@@ -5,7 +5,7 @@ import GoodsDetail from 'containers/GoodsDetail';
 
 class App extends Component {
   render() {
-    const PUBLIC_PATH = process.env.REACT_APP_PUBLIC_PATH || '13.125.57.232:3000';
+    const PUBLIC_PATH = process.env.REACT_APP_PUBLIC_PATH || '';
     return (
       <Fragment>
         <header className="App-header">
