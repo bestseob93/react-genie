@@ -5,6 +5,7 @@ import GoodsDetail from 'containers/GoodsDetail';
 
 class App extends Component {
   render() {
+    const PUBLIC_PATH = process.env.REACT_APP_PUBLIC_PATH || '13.125.57.232:3000';
     return (
       <Fragment>
         <header className="App-header">
@@ -13,10 +14,10 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <Link to={`${process.env.REACT_APP_PUBLIC_PATH}/detail`}>상세화면</Link>
+        <Link to={`${PUBLIC_PATH}/detail`}>상세화면</Link>
         <Switch>
-          <Route exact path={`${process.env.REACT_APP_PUBLIC_PATH}`} component={Home} />
-          <Route path={`${process.env.REACT_APP_PUBLIC_PATH}/detail`} component={GoodsDetail} />
+          <Route exact path={`${PUBLIC_PATH}`} component={Home} />
+          <Route path={`${PUBLIC_PATH}/detail`} component={GoodsDetail} />
         </Switch>
       </Fragment>
     );
