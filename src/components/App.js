@@ -9,10 +9,10 @@ class App extends Component {
     return (
       <Fragment>
         <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Welcome to 기가지니</h1>
         </header>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          { JSON.stringify(window.navigator) }
         </p>
         <Link to={`${PUBLIC_PATH}/detail`}>상세화면</Link>
         <Switch>
