@@ -1,21 +1,22 @@
-import { Record} from 'immutable';
+import { fromJS } from 'immutable';
 import { createActions, handleActions } from 'redux-actions';
 
 
-export const types = {
+const types = {
     SHOW_BUTTON: 'HOME/SHOW_BUTTON'
 };
 
-const defaultState = Record({
+export const showButton = createActions(types.SHOW_BUTTON);
+
+const defaultState = fromJS({
     isButtonShow: false
 });
 
-export default handleActions({
-    [types.SHOW_BUTTON]: (state, action) => {
-        return state;
-    }
-}, defaultState);
-
-export const actions = {
-    showButton: createActions(types.SHOW_BUTTON)
-};
+export default function reducer(state = defaultState, action) {
+  switch(action.type) {
+    case types.SHOW_BUTTON:
+      return state.set('isButtonShow', true);
+    default:
+      return state;
+  }
+}

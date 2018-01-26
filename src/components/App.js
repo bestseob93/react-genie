@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
-import GigaGenie from './GigaGenie';
-import GoodsDetail from './GoodsDetail/GoodsHeader';
+import Home from 'containers/Home';
+import GoodsDetail from 'containers/GoodsDetail';
 
 class App extends Component {
   render() {
@@ -15,7 +15,7 @@ class App extends Component {
         </p>
         <Link to={`${process.env.REACT_APP_PUBLIC_PATH}/detail`}>상세화면</Link>
         <Switch>
-          <Route exact path={`${process.env.REACT_APP_PUBLIC_PATH}`} component={GigaGenie} />
+          <Route exact path={`${process.env.REACT_APP_PUBLIC_PATH}`} component={Home} />
           <Route path={`${process.env.REACT_APP_PUBLIC_PATH}/detail`} component={GoodsDetail} />
         </Switch>
       </Fragment>

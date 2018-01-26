@@ -24,6 +24,7 @@ class GigaGenie extends Component {
 
   initGeine = () => {
     console.log(process.env.REACT_APP_GEINE_KEY);
+    const { DebugActions } = this.props;
     const options = {
       appid: process.env.REACT_APP_GEINE_APP_ID,
       apiKey: process.env.REACT_APP_GEINE_KEY,
@@ -34,16 +35,20 @@ class GigaGenie extends Component {
       console.log(result_msg);
       if(result_cd === 200) {
         console.log("init started");
-        this.gigagenie.appinfo.getContainerId(null, function(result_cds, result_msgs, extras) {
-          if(result_cds === 200) {
-              console.log(extras);
-          } else {
-              console.log("getContainerId is fail.");
-          }
+        this.gigagenie.appinfo.getContainerId(null, (result_cds, result_msgs, extras) => {
+              if(result_cds === 200) {
+                  DebugActions.handleDebugValue({
+                    value: JSON.stringify(extras)
+                  });
+
+                  this.sendTTS();
+              } else {
+                  console.log("getContainerId is fail.");
+              }
         });
       }
 
-      console.log(extra);
+      alert(JSON.stringify(extra));
     });
   }
 
@@ -57,7 +62,7 @@ class GigaGenie extends Component {
 
     this.gigagenie.voice.getVoiceText(options, (result_cd, result_msg, extra) => {
       console.log(result_cd);
-      console.log(extra);
+      alert(JSON.stringify(extra));
       if(result_cd === 200) {
         // console.log(this.gigagenie.voice.onVoiceCommand);
         console.log('success');
@@ -90,8 +95,13 @@ class GigaGenie extends Component {
   }
 
   handleChange = (ev) => {
+    const { DebugActions } = this.props;
     this.setState({
       ttsText: ev.target.value
+    });
+    console.log(DebugActions);
+    DebugActions.handleDebugValue({
+      value: ev.target.value
     });
   }
 
