@@ -4,7 +4,7 @@ import logo from 'assets/images/logo.png';
 
 function Logo() {
   return (
-    <h1>
+    <h1 className="logo">
       <Link to="/">
         <img src={logo} alt="롯데슈퍼" />
       </Link>
