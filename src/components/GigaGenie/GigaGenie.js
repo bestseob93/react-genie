@@ -10,7 +10,7 @@ class GigaGenie extends Component {
       const element = d.getElementsByTagName(s)[0];
       const fjs = element;
       let js = element;
-
+      
       js = d.createElement(s);
       js.id = id;
       js.src = 'https://svcapi.gigagenie.ai/sdk/v1.0/js/gigagenie.js';
@@ -24,11 +24,12 @@ class GigaGenie extends Component {
 
   initGeine = () => {
     console.log(process.env.REACT_APP_GEINE_KEY);
+    console.log(global.gigagenie);
     const { DebugActions } = this.props;
     const options = {
-      appid: process.env.REACT_APP_GEINE_APP_ID,
-      apiKey: process.env.REACT_APP_GEINE_KEY,
-      keytype: process.env.REACT_APP_GEINE_KEY_TYPE
+      appid: process.env.REACT_APP_GENIE_APP_ID,
+      apiKey: process.env.REACT_APP_GENIE_KEY,
+      keytype: process.env.REACT_APP_GENIE_KEY_TYPE
     };
 
     this.gigagenie.init(options, (result_cd, result_msg, extra) => {
