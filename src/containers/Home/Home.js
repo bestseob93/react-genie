@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import GenieSDK from 'components/GenieSDK';
+import GoodsTable from 'components/Home/GoodsTable';
 import GenieHelp from 'components/Base/Footer/GenieHelp';
 
 import { actionCreators as debugActions } from 'ducks/debug.duck';
@@ -21,6 +22,7 @@ class Home extends Component {
     return (
       <Fragment>
         <GenieSDK {...this.props} />
+        <GoodsTable />
         <GenieHelp genieMsg={this.props.genieMsg} />
       </Fragment>
     );
