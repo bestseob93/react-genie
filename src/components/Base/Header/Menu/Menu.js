@@ -4,9 +4,9 @@ import MenuList from './MenuList';
 
 function Menu() {
   return (
-    <div>
+    <nav className="navigation">
       <MenuList />
-    </div>
+    </nav>
   );
 }
 

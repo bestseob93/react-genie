@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function MenuItem({ name }) {
   return (
-    <li className="menu_item">
+    <li>
       <Link to="/">{ name }</Link>
     </li>
   );

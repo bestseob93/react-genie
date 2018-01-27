@@ -4,6 +4,6 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 
-import MenuItem from './MenuItem';
+import MenuList from './MenuList';
 
-storiesOf('MenuItem', module).add('Item', () => <MenuItem />);
+storiesOf('MenuItem', module).add('Item', () => <MenuList />);

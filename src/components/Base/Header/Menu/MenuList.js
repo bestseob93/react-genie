@@ -9,7 +9,7 @@ class MenuList extends Component {
   render() {
     const { renderItems } = this;
     return (
-      <ul>
+      <ul className="menu_list">
         {/* { renderItems() } */}
         <MenuItem name="홈" />
         <MenuItem name="전단상품" />
