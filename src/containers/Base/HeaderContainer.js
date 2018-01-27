@@ -7,8 +7,10 @@ class HeaderContainer extends Component {
   render() {
     return (
       <header>
-        <Logo />
-        <Menu />
+        <section>
+          <Logo />
+          <Menu />
+        </section>
       </header>
     );
   }
