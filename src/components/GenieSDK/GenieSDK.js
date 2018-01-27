@@ -1,39 +1,62 @@
 import React, { Component } from 'react';
+import loadGG from 'services/loadGG';
 
-class GigaGenie extends Component {
+let gigagenie = {};
+
+function initGenie() {
+  alert("fuck");
+  // alert(gigagenie);
+}
+
+class GenieSDK extends Component {
   state = {
     ttsText: ''
   };
 
+  constructor(props) {
+    super(props);
+    this.initGenie = this.initGenie.bind(this);
+  }
+
   componentDidMount() {
-    ((d, s, id, cb) => {
+    const self = this;
+    (function(d, s, id, cb) {
       const element = d.getElementsByTagName(s)[0];
       const fjs = element;
       let js = element;
-      
+
       js = d.createElement(s);
       js.id = id;
       js.src = 'https://svcapi.gigagenie.ai/sdk/v1.0/js/gigagenie.js';
       fjs.parentNode.insertBefore(js, fjs);
       js.onload = cb;
-    })(document, 'script', 'geine-sdk', () => {
-      this.gigagenie = global.gigagenie;
-      this.initGeine();
+    })(document, 'script', 'geine-sdk', function() {
+      gigagenie = global.gigagenie;
+      self.gigagenie = gigagenie;
+      self.initGenie();
     });
   }
 
-  initGeine = () => {
-    console.log(process.env.REACT_APP_GEINE_KEY);
-    console.log(global.gigagenie);
+  hihi = () => {
+    return "hi"
+  }
+
+  initGenie() {
+    console.log(this.gigagenie);
+    console.log(process.env.REACT_APP_GENIE_KEY);
+    console.log(gigagenie);
     const { DebugActions } = this.props;
     const options = {
       appid: process.env.REACT_APP_GENIE_APP_ID,
       apiKey: process.env.REACT_APP_GENIE_KEY,
       keytype: process.env.REACT_APP_GENIE_KEY_TYPE
     };
-
+    // alert(this);
+    // alert("hello");
+    // alert(this.hihi());
     this.gigagenie.init(options, (result_cd, result_msg, extra) => {
       console.log(result_msg);
+      // alert("init started");
       if(result_cd === 200) {
         console.log("init started");
         this.gigagenie.appinfo.getContainerId(null, (result_cds, result_msgs, extras) => {
@@ -42,14 +65,14 @@ class GigaGenie extends Component {
                     value: JSON.stringify(extras)
                   });
 
-                  this.sendTTS();
+                  // this.sendTTS();
               } else {
                   console.log("getContainerId is fail.");
               }
         });
       }
 
-      alert(JSON.stringify(extra));
+      // alert(JSON.stringify(extra));
     });
   }
 
@@ -63,7 +86,7 @@ class GigaGenie extends Component {
 
     this.gigagenie.voice.getVoiceText(options, (result_cd, result_msg, extra) => {
       console.log(result_cd);
-      alert(JSON.stringify(extra));
+      // alert(JSON.stringify(extra));
       if(result_cd === 200) {
         // console.log(this.gigagenie.voice.onVoiceCommand);
         console.log('success');
@@ -133,4 +156,4 @@ class GigaGenie extends Component {
   }
 }
 
-export default GigaGenie;
+export default GenieSDK;

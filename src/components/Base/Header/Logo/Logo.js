@@ -3,7 +3,7 @@ import logo from 'assets/images/logo.png';
 
 function Logo() {
     return (
-        <img src={logo} />
+        <img src={logo} alt="로고" />
     );
 }
 

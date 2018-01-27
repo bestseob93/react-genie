@@ -1,5 +1,5 @@
-export default function(options) {
-    (function(w, d, s, id, cb) {
+module.exports = function(component) {
+    (function(d, s, id, cb) {
         const element = d.getElementsByTagName(s)[0];
         const fjs = element;
         let js = element;
@@ -9,8 +9,8 @@ export default function(options) {
         js.src = 'https://svcapi.gigagenie.ai/sdk/v1.0/js/gigagenie.js';
         fjs.parentNode.insertBefore(js, fjs);
         js.onload = cb;
-      })(window, document, 'script', 'geine-sdk', () => {
-        this.gigagenie = global.gigagenie;
-        this.initGeine();
+      })(document, 'script', 'geine-sdk', function() {
+        component.gigagenie = global.gigagenie;
+        component.initGenie();
       });
 }

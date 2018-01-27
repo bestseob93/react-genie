@@ -2,15 +2,14 @@ import React, { Component, Fragment } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 import Home from 'containers/Home';
 import GoodsDetail from 'containers/GoodsDetail';
+import HeaderContainer from 'containers/Base/HeaderContainer';
 
 class App extends Component {
   render() {
     const PUBLIC_PATH = process.env.REACT_APP_PUBLIC_PATH || '';
     return (
       <Fragment>
-        <header className="App-header">
-          <h1 className="App-title">Welcome to 기가지니</h1>
-        </header>
+        <HeaderContainer />
         <p className="App-intro">
           { JSON.stringify(window.navigator) }
         </p>

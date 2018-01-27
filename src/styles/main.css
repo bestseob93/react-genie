@@ -1,1 +1,1 @@
-html{height:100%}body{height:100%;margin:0;padding:0;overflow-x:hidden;width:100%;background:url(../assets/images/background.png) no-repeat}.App{text-align:center}.App-title{font-size:1.5em}.App-intro{font-size:large}
+html{height:100%}body{height:100%;margin:0;padding:50px;overflow-x:hidden;width:100%;background:url(../assets/images/background.png) no-repeat}li,ol,ul{list-style:none}a,a:hover,a:visited{text-decoration:none;color:inherit}.App{text-align:center}.App-title{font-size:1.5em}.App-intro{font-size:large}.menu_item{float:left;border:1px solid #fff}

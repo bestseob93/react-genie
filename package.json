@@ -16,6 +16,7 @@
     "dotenv": "4.0.0",
     "dotenv-expand": "4.0.1",
     "eslint": "4.10.0",
+    "eslint-config-airbnb": "^16.1.0",
     "eslint-config-react-app": "^2.1.0",
     "eslint-loader": "1.9.0",
     "eslint-plugin-flowtype": "2.39.1",
@@ -104,15 +105,15 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^3.3.9",
+    "@storybook/addon-links": "^3.3.9",
+    "@storybook/addons": "^3.3.9",
+    "@storybook/react": "^3.3.9",
     "grunt": "^1.0.1",
     "grunt-contrib-less": "^1.4.1",
     "grunt-contrib-watch": "^1.0.0",
     "less-plugin-autoprefix": "^1.5.1",
     "less-plugin-clean-css": "^1.5.1",
-    "npm-run-all": "^4.1.2",
-    "@storybook/react": "^3.3.9",
-    "@storybook/addon-actions": "^3.3.9",
-    "@storybook/addon-links": "^3.3.9",
-    "@storybook/addons": "^3.3.9"
+    "npm-run-all": "^4.1.2"
   }
 }

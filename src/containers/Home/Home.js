@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import GigaGenie from 'components/GigaGenie';
+import GenieSDK from 'components/GenieSDK';
 import GenieHelp from 'components/Base/Footer/GenieHelp';
 
 import { actionCreators as debugActions } from 'ducks/debug.duck';
@@ -20,7 +20,7 @@ class Home extends Component {
     console.log(this.props);
     return (
       <Fragment>
-        <GigaGenie {...this.props} />
+        <GenieSDK {...this.props} />
         <GenieHelp genieMsg={this.props.genieMsg} />
       </Fragment>
     );

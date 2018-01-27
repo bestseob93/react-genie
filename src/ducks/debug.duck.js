@@ -12,7 +12,7 @@ const defaultState = fromJS({
 
 export default handleActions({
   [types.HANDLE_DEBUG_VALUE]: (state, action) => {
-      return state.set('genieMsg', action.payload.value);
+    return state.set('genieMsg', action.payload.value);
   }
 }, defaultState);
 
