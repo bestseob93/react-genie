@@ -7,21 +7,16 @@ class GenieSDK extends Component {
     ttsText: ''
   };
 
-  constructor(props) {
-    super(props);
-    this.initGenie = this.initGenie.bind(this);
-  }
-
   componentDidMount() {
-    loadGG(this); // GigaGenie init
+    const { genieLoaded } = this.props;
+    console.log(genieLoaded);
+    if(!genieLoaded) {
+      loadGG(this); // GigaGenie init
+    }
   }
 
-  hihi = () => {
-    return "hi"
-  }
-
-  initGenie() {
-    const { DebugActions } = this.props;
+  initGenie = () => {
+    const { GenieActions, DebugActions } = this.props;
     const options = {
       appid: process.env.REACT_APP_GENIE_APP_ID,
       apikey: process.env.REACT_APP_GENIE_KEY,
@@ -29,68 +24,66 @@ class GenieSDK extends Component {
     };
 
     this.gigagenie.init(options, (result_cd, result_msg, extra) => {
-      console.log(result_msg);
-      alert("init started");
-      alert(JSON.stringify(extra));
       if(result_cd === 200) {
         console.log("init started");
+        this.gigagenie.voice.onVoiceCommand = this.handleVoiceCommand;
+        this.gigagenie.voice.onActionEvent = this.handleActionEvent;
+
+        GenieActions.setGenieLoaded();
+
         this.gigagenie.appinfo.getContainerId(null, (result_cds, result_msgs, extras) => {
               if(result_cds === 200) {
                   DebugActions.handleDebugValue({
                     value: JSON.stringify(extras)
                   });
 
-                  // this.sendTTS();
+                  this.sendTTS();
               } else {
                   console.log("getContainerId is fail.");
               }
         });
       }
-
-      // alert(JSON.stringify(extra));
     });
   }
 
   sendTTS = () => {
+    const { DebugActions } = this.props;
+
     const options = {
-      mode: 1,
+      mode: 0, // 0: extra.voicetext, 1: onActionEvent, 2: onVoiceCommand
       voicemsg: '말해보세요'
     };
 
-    console.log(options);
-
     this.gigagenie.voice.getVoiceText(options, (result_cd, result_msg, extra) => {
-      console.log(result_cd);
-      // alert(JSON.stringify(extra));
       if(result_cd === 200) {
-        // console.log(this.gigagenie.voice.onVoiceCommand);
-        console.log('success');
-        this.handleGenieActionEvent(extra.voicetext);
+        if(extra.voicetext) {
+          DebugActions.handleDebugValue({
+            value: extra.voicetext
+          });
+        }
+        this.sendTTS();
       }
     });
   }
 
-  handleGenieActionEvent = (voiceText) => {
-    console.log('called : ', voiceText);
-    this.gigagenie.voice.onActionEvent = (extra) => {
-      console.log(extra);
-      console.log('hi');
-    };
-    
-    this.gigagenie.voice.onVoiceCommand = (event) => {
-      console.log(event);
-      // switch(event){
-      //   case 'nextPage':
-      //     console.log('called nextPage');
-      //   // location.href="http://image.lottesuper.co.kr/static-root/image/gigagenie/test/more.html";
-      //   break;
-      // case 'prevPage':
-      //   console.log('prevPage');
-      //   break;
-      // default:
-      //   break;
-      // }
-    };
+  handleVoiceCommand = (event) => {
+    switch(event) {
+      case 'nextPage':
+        alert("다음페이지 호출됨");
+        break;
+      case 'prevPage':
+        alert("이전페이지 호출됨");
+        break;
+      default:
+        break;
+    }
+  }
+
+  handleActionEvent = (ev) => {
+    const { DebugActions } = this.props;
+    DebugActions.handleDebugValue({
+      value: "함수 받음"
+    });
   }
 
   handleChange = (ev) => {

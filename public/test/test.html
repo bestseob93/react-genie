@@ -14,7 +14,8 @@ img {border:none}
 var options={};
 function init(){
 	options={};
-	options.apikey="RTUwMDA4MzZ8R0JPWERFVk18MTUxMzA1NjA0NjY5Ng==";
+	options.appid="E5001065";
+	options.apikey="RTUwMDEwNjV8R0JPWERFVk18MTUxNDg2MjY1MjEwNg==";
 	options.keytype="GBOXDEVM"; // 개발자 모드를 설정하고 사용하세요.
 	//options.keytype="GBOXCOMM"; // 개발자센터에서 승인이 되어야 사용하실 수 있습니다.
 	gigagenie.init(options,function(result_cd,result_msg,extra){
@@ -32,13 +33,18 @@ function startNineNineTTL(){
 	gigagenie.voice.getVoiceText(options,function(result_cd,result_msg,extra){
 		if(result_cd===200){
 			document.getElementById("sp").innerHTML = options.voicemsg;
+		} else {
+			//extra.reason 에 voice 오류 전달.
+		};
+	});
+}
 
-			gigagenie.voice.onVoiceCommand=function(event){
+gigagenie.voice.onVoiceCommand=function(event) {
                 console.log('hi');
                 console.log(event);
 				switch(event){
                     case 'nextPage':
-                        console.log('called nextPage');
+                        alert('굳');
 						// location.href="http://image.lottesuper.co.kr/static-root/image/gigagenie/test/more.html";
 						break;
 					case 'prevPage':
@@ -48,11 +54,6 @@ function startNineNineTTL(){
 						break;
 				}
 			};
-		} else {
-			//extra.reason 에 voice 오류 전달.
-		};
-	});
-}
 
 
 </script>
