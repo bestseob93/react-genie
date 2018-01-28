@@ -1,12 +1,6 @@
+/*eslint-disable no-undef*/
 import React, { Component } from 'react';
 import loadGG from 'services/loadGG';
-
-let gigagenie = {};
-
-function initGenie() {
-  alert("fuck");
-  // alert(gigagenie);
-}
 
 class GenieSDK extends Component {
   state = {
@@ -19,22 +13,7 @@ class GenieSDK extends Component {
   }
 
   componentDidMount() {
-    const self = this;
-    (function(d, s, id, cb) {
-      const element = d.getElementsByTagName(s)[0];
-      const fjs = element;
-      let js = element;
-
-      js = d.createElement(s);
-      js.id = id;
-      js.src = 'https://svcapi.gigagenie.ai/sdk/v1.0/js/gigagenie.js';
-      fjs.parentNode.insertBefore(js, fjs);
-      js.onload = cb;
-    })(document, 'script', 'geine-sdk', function() {
-      gigagenie = global.gigagenie;
-      self.gigagenie = gigagenie;
-      self.initGenie();
-    });
+    loadGG(this); // GigaGenie init
   }
 
   hihi = () => {
@@ -42,21 +21,17 @@ class GenieSDK extends Component {
   }
 
   initGenie() {
-    console.log(this.gigagenie);
-    console.log(process.env.REACT_APP_GENIE_KEY);
-    console.log(gigagenie);
     const { DebugActions } = this.props;
     const options = {
       appid: process.env.REACT_APP_GENIE_APP_ID,
-      apiKey: process.env.REACT_APP_GENIE_KEY,
+      apikey: process.env.REACT_APP_GENIE_KEY,
       keytype: process.env.REACT_APP_GENIE_KEY_TYPE
     };
-    // alert(this);
-    // alert("hello");
-    // alert(this.hihi());
+
     this.gigagenie.init(options, (result_cd, result_msg, extra) => {
       console.log(result_msg);
-      // alert("init started");
+      alert("init started");
+      alert(JSON.stringify(extra));
       if(result_cd === 200) {
         console.log("init started");
         this.gigagenie.appinfo.getContainerId(null, (result_cds, result_msgs, extras) => {
