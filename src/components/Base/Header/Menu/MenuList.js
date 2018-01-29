@@ -11,9 +11,8 @@ class MenuList extends Component {
     return (
       <ul className="menu_list">
         {/* { renderItems() } */}
-        <MenuItem name="홈" />
-        <MenuItem name="전단상품" />
         <MenuItem name="장바구니" />
+        <MenuItem name="배송현황" />
         <MenuItem name="이용안내" />
       </ul>
     );
