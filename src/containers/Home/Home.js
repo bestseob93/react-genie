@@ -4,12 +4,14 @@ import { connect } from 'react-redux';
 
 import GoodsTable from 'components/Home/GoodsTable';
 import GenieHelp from 'components/Base/Footer/GenieHelp';
+import HomeTitle from 'components/Home/HomeTitle';
 
 class Home extends Component {
   render() {
     console.log(this.props);
     return (
       <Fragment>
+        <HomeTitle />
         <GoodsTable />
         <GenieHelp genieMsg={this.props.genieMsg} />
       </Fragment>

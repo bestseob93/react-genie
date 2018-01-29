@@ -2,7 +2,7 @@ import React from 'react';
 
 function GenieHelp({ genieMsg }) {
   return (
-    <footer>
+    <div className="temp_footer">
       <div className="debug_box">
         <div>
           <h3>기가지니 정보</h3>
@@ -28,7 +28,7 @@ function GenieHelp({ genieMsg }) {
           </div>
         </div>
       </div>
-    </footer>
+    </div>
   );
 }
 

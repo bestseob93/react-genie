@@ -5,6 +5,7 @@ import {
   GoodsDetail,
   HeaderContainer,
   Home,
+  SpeakGuide
 } from 'containers';
 
 class App extends Component {
@@ -17,11 +18,11 @@ class App extends Component {
           { JSON.stringify(window.navigator) }
         </p>
         <Core />
-        <Link to={`${PUBLIC_PATH}/detail`}>상세화면</Link>
         <Switch>
           <Route exact path={`${PUBLIC_PATH}`} component={Home} />
           <Route path={`${PUBLIC_PATH}/detail`} component={GoodsDetail} />
         </Switch>
+        <SpeakGuide />
       </div>
     );
   }

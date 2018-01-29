@@ -13,7 +13,7 @@ body {
   background: url('../assets/images/background.jpg') no-repeat;
 }
 
-a, nav, header, footer, aside, article, main, figure, figcaption, section {
+a, nav, header, footer, aside, article, main, figure, figcaption, section, ul, ol, li {
   display: block;
   padding: 0;
   margin: 0;
@@ -21,7 +21,7 @@ a, nav, header, footer, aside, article, main, figure, figcaption, section {
 
 h1 {
   font-size: 2em;
-  margin: 0.67em 0;
+  margin: 0;
 }
 
 ul, ol {
@@ -37,6 +37,10 @@ a, a:visited, a:hover {
   padding: 60px 90px 130px 90px;
 }
 
+@import 'variable';
+@import 'mixin';
+
 @import 'GenieSDK/genie';
 @import 'Home/all';
 @import 'Base/all';
+@import 'SpeakGuide/all';
