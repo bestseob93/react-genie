@@ -8,7 +8,7 @@ class HeaderContainer extends Component {
   render() {
     return (
       <header>
-        <section>
+        <section className="header_wrapper">
           <Logo />
           <DeliverStore />
           <Menu />

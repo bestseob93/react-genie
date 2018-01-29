@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 import {
   Core,
@@ -11,7 +11,7 @@ class App extends Component {
   render() {
     const PUBLIC_PATH = process.env.REACT_APP_PUBLIC_PATH || '';
     return (
-      <Fragment>
+      <div className="container">
         <HeaderContainer />
         <p className="App-intro">
           { JSON.stringify(window.navigator) }
@@ -22,7 +22,7 @@ class App extends Component {
           <Route exact path={`${PUBLIC_PATH}`} component={Home} />
           <Route path={`${PUBLIC_PATH}/detail`} component={GoodsDetail} />
         </Switch>
-      </Fragment>
+      </div>
     );
   }
 }

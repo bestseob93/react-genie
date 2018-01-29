@@ -25,7 +25,6 @@ class GenieSDK extends Component {
 
     this.gigagenie.init(options, (result_cd, result_msg, extra) => {
       if(result_cd === 200) {
-        console.log("init started");
         this.gigagenie.voice.onVoiceCommand = this.handleVoiceCommand;
         this.gigagenie.voice.onActionEvent = this.handleActionEvent;
 
