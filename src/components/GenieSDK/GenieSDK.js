@@ -61,12 +61,13 @@ class GenieSDK extends Component {
             value: extra.voicetext
           });
         }
-        this.sendTTS();
+        // this.sendTTS();
       }
     });
   }
 
   handleVoiceCommand = (event) => {
+    console.log(event);
     switch(event) {
       case 'nextPage':
         alert("다음페이지 호출됨");
