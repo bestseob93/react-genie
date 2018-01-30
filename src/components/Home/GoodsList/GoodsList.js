@@ -18,7 +18,7 @@ class GoodsList extends Component {
       <ul className="goods_wrapper">
         {/* { renderBoxes() } */}
         <li className="event goods_box">
-          <Link to="/" className="border_t_l">
+          <Link to="/detail" className="border_t_l">
             <div className="event_label">
               <span>이벤트</span>
             </div>

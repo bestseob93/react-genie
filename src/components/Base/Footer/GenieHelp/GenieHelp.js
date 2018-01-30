@@ -23,6 +23,8 @@ function GenieHelp({ genieMsg }) {
       <div className="debug_box">
         <div className="scroll_wrapper">
           <div>
+            <h3>현재 경로</h3>
+            <p>{window.location.pathname}</p>
             <h3>로그</h3>
             <p className="genie_info">{ genieMsg }</p>
           </div>
