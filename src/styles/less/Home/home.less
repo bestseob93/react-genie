@@ -1,25 +1,26 @@
-.home_title {
-  font-size: 50px;
-  font-weight: 300;
-  text-align: center;
-  padding-bottom: 40px;
-  letter-spacing: -6px;
+.mic_icon {
+  background: url('../assets/images/mic.png');
+  width: 34px;
+  height: 52px;
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: bottom;
 }
 
 .border_t_l {
-  border-top-left-radius: 10px;
+  border-top-left-radius: 16px;
 }
 
 .border_t_r {
-  border-top-right-radius: 10px;
+  border-top-right-radius: 16px;
 }
 
 .border_b_l {
-  border-bottom-left-radius: 10px;
+  border-bottom-left-radius: 16px;
 }
 
 .border_b_r {
-  border-bottom-right-radius: 10px;
+  border-bottom-right-radius: 16px;
 }
 
 .goods_wrapper {
@@ -37,9 +38,28 @@
     //   display: block;
     //   padding-top: 165px;
     // }
-    p {
+    a {
       height: 333px;
       background-color: @yellow !important;
+      .event_label {
+        width: 81px;
+        height: 33px;
+        line-height: 33px;
+        border-radius: 40px;
+        background-color: @light-blue;
+        margin: 0 auto;
+        margin-top: 50px;
+        span {
+          color: #fff;
+          font-size: 18px;
+          vertical-align: baseline;
+        }
+      }
+      .goods_title {
+        color: @light-blue;
+        font-size: 35px;
+        padding-top: 0;
+      }
     }
   }
   .goods_box {
@@ -54,16 +74,31 @@
     //   display: block;
     //   padding-top: 165px;
     // }
-  }
-  p {
-    margin: 0;
-    width: 265px;
-    height: 165px;
-    background-color: #fff;
-    top: 0em;
-    left: 0em;
-    position: absolute;
-    text-align: center;
-    color: #000;
+    
+    a {
+      margin: 0;
+      width: 265px;
+      height: 165px;
+      background-color: #fff;
+      top: 0em;
+      left: 0em;
+      position: absolute;
+      text-align: center;
+      color: #000;
+      .goods_title {
+        color: @black;
+        font-weight: 700;
+        font-size: 30px;
+        letter-spacing: -4px;
+        padding-top: 20px;
+      }
+      img {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+      }
+    }
   }
 }

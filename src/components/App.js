@@ -14,15 +14,12 @@ class App extends Component {
     return (
       <div className="container">
         <HeaderContainer />
-        <p className="App-intro">
-          { JSON.stringify(window.navigator) }
-        </p>
-        <Core />
         <Switch>
           <Route exact path={`${PUBLIC_PATH}`} component={Home} />
           <Route path={`${PUBLIC_PATH}/detail`} component={GoodsDetail} />
         </Switch>
         <SpeakGuide />
+        <Core />
       </div>
     );
   }

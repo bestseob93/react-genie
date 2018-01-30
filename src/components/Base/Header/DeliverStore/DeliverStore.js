@@ -2,8 +2,15 @@ import React from 'react';
 
 function DeliverStore() {
   return (
-    <span>
-      배송매장<strong>범서점</strong>로그인을 하시면 정확한 정보 확인이 가능합니다.
+    <span className="delivery_store">
+      배송매장
+      <strong> 안양점</strong>
+      <span className="circle"></span>
+      출발
+      <strong> 오늘 오후 1시</strong>
+      <span className="circle"></span>
+      장바구니
+      <strong> 0건</strong>
     </span>
   );
 }
