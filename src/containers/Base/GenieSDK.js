@@ -1,5 +1,6 @@
 /*eslint-disable no-undef*/
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import loadGG from 'services/loadGG';
 
 class GenieSDK extends Component {
@@ -67,10 +68,11 @@ class GenieSDK extends Component {
 
   handleVoiceCommand = (event) => {
     console.log(event);
+    const PUBLIC_PATH = process.env.REACT_APP_PUBLIC_PATH || '';
     switch(event) {
       case 'nextPage':
         alert("다음페이지 호출됨");
-        break;
+        return <Redirect to={`${PUBLIC_PATH}/detail`} />
       case 'prevPage':
         alert("이전페이지 호출됨");
         break;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import GenieSDK from 'components/GenieSDK';
+import GenieSDK from './GenieSDK';
 
 import { actionCreators as genieActions } from 'ducks/genie.duck';
 import { actionCreators as debugActions } from 'ducks/debug.duck';
