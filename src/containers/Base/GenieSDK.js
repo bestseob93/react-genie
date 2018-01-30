@@ -5,7 +5,8 @@ import loadGG from 'services/loadGG';
 
 class GenieSDK extends Component {
   state = {
-    ttsText: ''
+    ttsText: '',
+    chgView: false
   };
 
   componentDidMount() {
@@ -50,7 +51,7 @@ class GenieSDK extends Component {
     const { DebugActions } = this.props;
 
     const options = {
-      mode: 0, // 0: extra.voicetext, 1: onActionEvent, 2: onVoiceCommand
+      mode: 2, // 0: extra.voicetext, 1: onActionEvent, 2: onVoiceCommand
       voicemsg: '말해보세요'
     };
 
@@ -67,12 +68,13 @@ class GenieSDK extends Component {
   }
 
   handleVoiceCommand = (event) => {
+    console.log('hi');
     console.log(event);
-    const PUBLIC_PATH = process.env.REACT_APP_PUBLIC_PATH || '';
     switch(event) {
       case 'nextPage':
         alert("다음페이지 호출됨");
-        // return <Redirect to={`${PUBLIC_PATH}/detail`} />
+        console.log(this.state);
+        break;
       case 'prevPage':
         alert("이전페이지 호출됨");
         break;
@@ -101,28 +103,36 @@ class GenieSDK extends Component {
 
   handleKeyPress = (ev) => {
     if(ev.charCode === 13) {
-      this.sendTTS();
+      this.setState({
+        ...this.state,
+        chgView: true
+      });
     }
   }
 
   render() {
-    return (
-      <div>
-        <input
-          type="text"
-          name="tts"
-          value={this.state.ttsText}
-          onChange={this.handleChange}
-          onKeyPress={this.handleKeyPress}
-        />
-        <button
-          onClick={this.sendTTS}
-          type="button"
-        >
-          전송
-        </button>
-      </div>
-    );
+    const PUBLIC_PATH = process.env.REACT_APP_PUBLIC_PATH || '';
+    if(this.state.chgView) {
+      return <Redirect to={`${PUBLIC_PATH}/detail`} />;
+    } else {
+      return (
+        <div>
+          <input
+            type="text"
+            name="tts"
+            value={this.state.ttsText}
+            onChange={this.handleChange}
+            onKeyPress={this.handleKeyPress}
+          />
+          <button
+            onClick={this.sendTTS}
+            type="button"
+          >
+            전송
+          </button>
+        </div>
+      );
+    }
   }
 }
 
