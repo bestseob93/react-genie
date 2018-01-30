@@ -13,12 +13,12 @@ class GoodsList extends Component {
         return <GoodsItem i={i} key={i} />
       });
     };
-
+    const PUBLIC_PATH = process.env.REACT_APP_PUBLIC_PATH || '';
     return (
       <ul className="goods_wrapper">
         {/* { renderBoxes() } */}
         <li className="event goods_box">
-          <Link to="/detail" className="border_t_l">
+          <Link to={`${PUBLIC_PATH}/detail`} className="border_t_l">
             <div className="event_label">
               <span>이벤트</span>
             </div>
