@@ -2,8 +2,8 @@ import React from 'react';
 
 function ReviewScore() {
   return (
-    <div>
-      ReviewScore
+    <div className="review_item score">
+      9.7
     </div>
   );
 }

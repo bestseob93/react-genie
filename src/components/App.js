@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import {
   Core,
   GoodsDetail,
@@ -15,7 +15,7 @@ class App extends Component {
       <div className="container">
         <HeaderContainer />
         <Switch>
-          <Route exact path={`${PUBLIC_PATH}`} component={Home} />
+          <Route exact  path={`${PUBLIC_PATH}`} component={Home} />
           <Route path={`${PUBLIC_PATH}/detail`} component={GoodsDetail} />
         </Switch>
         <SpeakGuide />
