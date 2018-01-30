@@ -1,11 +1,10 @@
 import React from 'react';
 
-function GoodsHeader() {
+function Stars() {
   return (
     <div>
-      hi
     </div>
   );
 }
 
-export default GoodsHeader;
+export default Stars;

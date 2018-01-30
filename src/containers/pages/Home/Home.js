@@ -11,7 +11,7 @@ class Home extends Component {
     console.log(this.props);
     return (
       <Fragment>
-        <MainTitle />
+        <MainTitle {...this.props} />
         <GoodsTable />
         <GenieHelp genieMsg={this.props.genieMsg} />
       </Fragment>
