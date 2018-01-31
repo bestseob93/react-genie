@@ -11,6 +11,10 @@ export const getProducts = () => {
     });
 }
 
+/**
+ * 상품 리스트 초기 데이터 앱 실행 시 로컬 스토로지에 저장
+ * @param {Object[]} datas - 상품 리스트
+ */
 export const initDatas = (datas) => {
     return new Promise((resolve, reject) => {
         const results = storage.get('home_data');
@@ -28,12 +32,11 @@ export const initDatas = (datas) => {
     });
 }
 
-export const getGoodsThumbnails = () => {
+export const getGoodsThumbnails = (results) => {
     return new Promise((resolve, reject) => {
-        const results = storage.get('home_data');
         setTimeout(() => {
             resolve(results);
-        }, 1500);
+        }, 1000);
         if(!results) {
             reject("저장된 데이터가 존재하지 않습니다.");
         }

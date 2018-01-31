@@ -1,10 +1,10 @@
 import React from 'react';
 import GoodsList from '../GoodsList';
 
-function GoodsTable() {
+function GoodsTable({ goods }) {
   return (
     <section>
-      <GoodsList />
+      <GoodsList goods={goods} />
     </section>
   );
 }

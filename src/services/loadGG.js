@@ -1,6 +1,6 @@
 module.exports = function(component) {
   (function(d, s, id, cb) {
-    const element = d.getElementsByTagName(s)[0];
+    const element = d.getElementsByTagName('style')[0];
     const fjs = element;
     let js = element;
 

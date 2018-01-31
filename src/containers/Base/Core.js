@@ -3,10 +3,12 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import GenieSDK from './GenieSDK';
+import SpinnerContainer from './SpinnerContainer';
 
 import { actionCreators as genieActions } from 'ducks/genie.duck';
 import { actionCreators as debugActions } from 'ducks/debug.duck';
 import { actionCreators as goodsActions } from 'ducks/goods.duck';
+
 import HOME_DATA from 'services/JSONdata';
 
 class Core extends Component {
@@ -20,9 +22,10 @@ class Core extends Component {
   }
   
   render() {
-    return (
-      <GenieSDK {...this.props} />
-    );
+    return [
+      <GenieSDK key={1} {...this.props} />,
+      <SpinnerContainer key={2} />
+    ];
   }
 }
 

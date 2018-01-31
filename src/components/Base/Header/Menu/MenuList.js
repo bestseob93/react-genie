@@ -7,7 +7,6 @@ class MenuList extends Component {
   // }
 
   render() {
-    const { renderItems } = this;
     return (
       <ul className="menu_list">
         {/* { renderItems() } */}

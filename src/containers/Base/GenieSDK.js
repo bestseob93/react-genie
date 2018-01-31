@@ -38,7 +38,7 @@ class GenieSDK extends Component {
                     value: JSON.stringify(extras)
                   });
 
-                  this.sendTTS();
+                  // this.sendTTS();
               } else {
                   console.log("getContainerId is fail.");
               }

@@ -21,6 +21,10 @@ export default handleActions({
   [`${types.GET_GOODS_THUMB}_FULFILLED`]: (state, action) => {
     console.log(action);
     return state.set('goodsThumbs', action.payload)
+  },
+  [`${types.GET_GOODS_THUMB}_REJECTED`]: (state, action) => {
+    console.log(action);
+    return state.set('goodsThumbs', action.payload)
   }
 }, defaultState);
 
