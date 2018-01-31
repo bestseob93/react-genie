@@ -1,10 +1,10 @@
 import React from 'react';
 import GoodsList from '../GoodsList';
 
-function GoodsTable({ goods }) {
+function GoodsTable({ goods, swapped }) {
   return (
     <section>
-      <GoodsList goods={goods} />
+      <GoodsList goods={goods} swapped={swapped} />
     </section>
   );
 }
