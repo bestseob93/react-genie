@@ -8,7 +8,7 @@ import MainTitle from 'components/MainTitle';
 
 import { actionCreators as goodsActions } from 'ducks/goods.duck';
 import { actionCreators as uiActions } from 'ducks/ui.duck';
-import HOME_DATA from 'services/JSONdata';
+import { HOME_DATA } from 'services/JSONdata';
 
 class Home extends Component {
   constructor(props) {
@@ -60,7 +60,7 @@ class Home extends Component {
 
   // TODO: setTimeout 메쏘드로 어떻게할지
   componentWillUnmount() {
-    clearTimeout();
+    clearTimeout(global.setTimeout);
   }
 
   timeTravel = () => {

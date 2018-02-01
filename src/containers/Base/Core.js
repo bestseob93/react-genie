@@ -9,7 +9,7 @@ import { actionCreators as genieActions } from 'ducks/genie.duck';
 import { actionCreators as debugActions } from 'ducks/debug.duck';
 import { actionCreators as goodsActions } from 'ducks/goods.duck';
 
-import HOME_DATA from 'services/JSONdata';
+import { HOME_DATA } from 'services/JSONdata';
 
 class Core extends Component {
   async componentDidMount() {
