@@ -1,5 +1,9 @@
 import React from 'react';
-
+/**
+ * Functional Component for GenieHelp
+ * @param {string} genieMsg - got from genie
+ * @returns jsx
+ */
 function GenieHelp({ genieMsg }) {
   return (
     <div className="temp_footer">

@@ -36,19 +36,21 @@ class AnimatedItem extends Component {
       priorityRank
     } = this.props;
 
+    const PUBLIC_PATH = process.env.REACT_APP_PUBLIC_PATH || '';
+    
     return (
       <li className="goods_box">
-        <Link to="/" className={borderRadius(index)}>
+        <Link to={`${PUBLIC_PATH}/GoodsDetail/${goodsNo}`} className={borderRadius(index)}>
           <p
             ref={(goodTitle) => this.goodTitle = goodTitle}
-            className={`animated fadeInDown goods_title`}
+            className={`animated fadeInDown ${isScaleRequired(imgUrl, true) === 'a' ? 'a' : ''} goods_title`}
           >{goodsCategory}
           </p>
           <img
             ref={(goodImage) => this.goodImage = goodImage}
             alt={goodsCategory}
             src={imgUrl}
-            className={`animated fadeInDown ${isScaleRequired(imgUrl)}`}
+            className={`animated fadeInDown ${isScaleRequired(imgUrl, true) === 'a' ? 'img_scale_down' : ''}`}
           />
         </Link>
       </li>

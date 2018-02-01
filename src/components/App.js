@@ -16,7 +16,7 @@ class App extends Component {
         <HeaderContainer />
         <Switch>
           <Route exact path={`${PUBLIC_PATH}`} component={Home} />
-          <Route path={`${PUBLIC_PATH}/detail`} component={GoodsDetail} />
+          <Route path={`${PUBLIC_PATH}/GoodsDetail/:goods_no`} component={GoodsDetail} />
         </Switch>
         <SpeakGuide />
         <Core />

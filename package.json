@@ -55,12 +55,14 @@
   "scripts": {
     "start-js": "node scripts/start.js",
     "start": "npm-run-all -p watch-less start-js",
-    "build": "node scripts/build.js",
+    "build-js": "node scripts/build.js",
+    "build": "npm-run-all build-js doc",
     "test": "node scripts/test.js --env=jsdom",
     "compile-less": "grunt compile-less",
     "watch-less": "grunt watch",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "doc": "esdoc -c esdoc.json"
   },
   "jest": {
     "collectCoverageFrom": [

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { borderRadius, isAnimatedRequired, isScaleRequired } from 'services/utils';
+import { borderRadius, isScaleRequired } from 'services/utils';
 
 /**
  * Functional Component for single item of Goods
@@ -34,7 +34,7 @@ function GoodsItem({
   if(index === 0) {
     return (
       <li className="event goods_box">
-        <Link to={`${PUBLIC_PATH}/detail`} className={borderRadius(index)}>
+        <Link to={`${PUBLIC_PATH}/GoodsDetail/${goodsNo}`} className={borderRadius(index)}>
           <div className="event_label">
             <span>이벤트</span>
           </div>
@@ -46,7 +46,7 @@ function GoodsItem({
   } else if(index >= 1 && index <= 3) {
     return (
         <li className="goods_box">
-          <Link to="/" className={borderRadius(index)}>
+          <Link to={`${PUBLIC_PATH}/GoodsDetail/${goodsNo}`} className={borderRadius(index)}>
             <p className="goods_title">{goodsCategory}</p>
             <img alt={goodsCategory} src={imgUrl} className={isScaleRequired(imgUrl)} />
           </Link>
@@ -55,7 +55,7 @@ function GoodsItem({
   } else if(index === 6) {
     return (
       <li className="goods_box" style={{marginLeft: '268px'}}>
-        <Link to="/" className={borderRadius(index)}>
+        <Link to={`${PUBLIC_PATH}/GoodsDetail/${goodsNo}`} className={borderRadius(index)}>
           <p className="goods_title">{goodsCategory}</p>
           <img alt={goodsCategory} src={imgUrl} className={isScaleRequired(imgUrl)} />
         </Link>
@@ -66,9 +66,9 @@ function GoodsItem({
   } else {
     return (
       <li className="goods_box">
-        <Link to="/" className={borderRadius(index)}>
-          <p className={`${isAnimatedRequired(priorityRank) ? 'animated fadeInDown' : ''} goods_title`}>{goodsCategory}</p>
-          <img alt={goodsCategory} src={imgUrl} className={`${isAnimatedRequired(priorityRank) ? 'animated fadeInDown' : ''} ${isScaleRequired(imgUrl)}`} />
+        <Link to={`${PUBLIC_PATH}/GoodsDetail/${goodsNo}`} className={borderRadius(index)}>
+          <p className="goods_title">{goodsCategory}</p>
+          <img alt={goodsCategory} src={imgUrl} className={`${isScaleRequired(imgUrl)}`} />
         </Link>
       </li>
     );

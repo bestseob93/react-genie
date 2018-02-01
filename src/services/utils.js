@@ -21,21 +21,18 @@ export const isAnimatedRequired = (pR) => {
   }
 }
 
-export const isFirstAnimation = (i) => {
-  if(i === 7 || i === 9 || i === 12 || i === 14 || i > 13) {
-  // console.log(items[i]);
-    return true;
-  } else {
-    return false;
-  }
-}
-
   /* 실제 서비스에선 필요 없음 */
-export const isScaleRequired = (url) => {
+export const isScaleRequired = (url, fromAnimated) => {
   let cn = '';
   const regex = /jpg/g;
   if(regex.test(url)) {
-    cn += 'img_scale_down';
+    if(fromAnimated) {
+      cn += 'a';
+      return cn;
+    } else {
+      cn += 'img_scale_down';
+      return cn;
+    }
   }
   return cn;
 }

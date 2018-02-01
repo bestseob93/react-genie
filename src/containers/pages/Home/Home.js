@@ -20,59 +20,47 @@ class Home extends Component {
       first: true
     };
   }
+  
 
   async componentDidMount() {
     const { UiActions, GoodsActions } = this.props;
     UiActions.setSpinnerVisible({ visiblity: true });
-    console.group("componentDidMount");
     try {
-      console.log('api called');
-      console.log(this.props);
       await GoodsActions.getGoodsThumbnails(HOME_DATA);
       console.time();
       this.timeTravel().then(() => {
         this.toggleGoodsList(true);
-        console.log('setTimeout started for 3secs');
         this.setState({
           ...this.state,
           first: false
         });
       });
-      console.timeEnd();
-      console.log('setTimeout end');
-      console.log('await');
     } catch (e) {
       UiActions.setSpinnerVisible({ visiblity: false });
       if(e) console.warn(e);
     }
     
     UiActions.setSpinnerVisible({ visiblity: false });
-    console.groupEnd();
   }
 
   componentWillReceiveProps(nextProps) {
-    console.group('componentWillReceiveProps');
-    console.time();
-    console.log(this.props);
-    console.log(nextProps);
     this.setState({
       ...this.state,
       stuffs: nextProps.stuffs
     });
-    console.timeEnd();
-    console.groupEnd();
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.group("componentDidUpdate");
-    console.log('update started');
     if(!this.state.first) {
-      console.log('if 문 들어온 케이스');
       setTimeout(() => {
         this.toggleGoodsList(this.state.swapped);
       }, 5000);
     }
-    console.groupEnd();
+  }
+
+  // TODO: setTimeout 메쏘드로 어떻게할지
+  componentWillUnmount() {
+    clearTimeout();
   }
 
   timeTravel = () => {
@@ -84,8 +72,6 @@ class Home extends Component {
   }
 
   toggleGoodsList = (secondary) => {
-    console.group('toggleGoodsList called');
-    console.log('toggled: ', secondary);
     let a = this.state.stuffs;
     const oldIndexes = [7, 9, 12, 14];
     const newIndexes = [17, 18, 19, 20];

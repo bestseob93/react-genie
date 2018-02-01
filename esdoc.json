@@ -1,0 +1,18 @@
+{
+    "source": "src",
+    "destination": "./build/esdoc",
+    "plugins": [
+        {
+            "name": "esdoc-standard-plugin"
+        },
+        {
+            "name": "esdoc-ecmascript-proposal-plugin",
+            "option": {
+                "all": true
+            }
+        },
+        {
+            "name": "esdoc-react-plugin"
+        }
+    ]
+  }
