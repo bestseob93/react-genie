@@ -148,6 +148,7 @@ export default [
         GOODS_CATEGORY: '올리브유',
         GOODS_NO: 1305879,
         IMG_URL: 'http://image.lottesuper.co.kr/79/58/30/1/1305879_1_200.jpg',
+        KEYWORD: '검색',
         PRIORITY_RANK: 15
     },
     {
@@ -155,6 +156,7 @@ export default [
         GOODS_CATEGORY: '초콜렛',
         GOODS_NO: 1053613,
         IMG_URL: 'http://image.lottesuper.co.kr/13/36/05/1/1053613_1_200.jpg',
+        KEYWORD: '검색',
         PRIORITY_RANK: 16
     },
     {
@@ -162,6 +164,7 @@ export default [
         GOODS_CATEGORY: '견과류',
         GOODS_NO: 1383350,
         IMG_URL: 'http://image.lottesuper.co.kr/50/33/38/1/1383350_1_200.jpg',
+        KEYWORD: '검색',
         PRIORITY_RANK: 17
     }
 ];

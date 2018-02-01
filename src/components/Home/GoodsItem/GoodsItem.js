@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { borderRadius, isScaleRequired } from 'services/utils';
+import { borderRadius, isAnimatedRequired, isScaleRequired } from 'services/utils';
 
 /**
  * Functional Component for single item of Goods
@@ -60,18 +60,19 @@ function GoodsItem({
           <img alt={goodsCategory} src={imgUrl} className={isScaleRequired(imgUrl)} />
         </Link>
       </li>
-    )
+    );
   } else if(index > 16) {
     return null;
+  } else {
+    return (
+      <li className="goods_box">
+        <Link to="/" className={borderRadius(index)}>
+          <p className={`${isAnimatedRequired(priorityRank) ? 'animated fadeInDown' : ''} goods_title`}>{goodsCategory}</p>
+          <img alt={goodsCategory} src={imgUrl} className={`${isAnimatedRequired(priorityRank) ? 'animated fadeInDown' : ''} ${isScaleRequired(imgUrl)}`} />
+        </Link>
+      </li>
+    );
   }
-  return (
-    <li className="goods_box">
-      <Link to="/" className={borderRadius(index)}>
-        <p className="goods_title">{goodsCategory}</p>
-        <img alt={goodsCategory} src={imgUrl} className={`${isScaleRequired(imgUrl)}`} />
-      </Link>
-    </li>
-  );
 }
 
 export default GoodsItem;

@@ -38,8 +38,11 @@ class GoodsList extends Component {
         KEYWORD,
         PRIORITY_RANK
       } = item;
-      const isFirstAnimation = (index) => {
-        if(index === 7 || index === 9 || index === 12 || index === 14) {
+      console.log(index + GOODS_CATEGORY);
+      const isFirstAnimation = (i) => {
+        if(i === 7 || i === 9 || i === 12 || i === 14) {
+          
+        // console.log(items[i]);
           return true;
         } else {
           return false;
@@ -47,6 +50,8 @@ class GoodsList extends Component {
       }
       
       if(isFirstAnimation(index) && KEYWORD === '검색') {
+        
+        console.log(items[index]);
         return (
           <AnimatedItem
             key={`item-${index}`}

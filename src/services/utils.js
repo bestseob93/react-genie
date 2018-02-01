@@ -13,6 +13,23 @@ export const borderRadius = (id) => {
   }
 }
 
+export const isAnimatedRequired = (pR) => {
+  if(pR > 13) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+export const isFirstAnimation = (i) => {
+  if(i === 7 || i === 9 || i === 12 || i === 14 || i > 13) {
+  // console.log(items[i]);
+    return true;
+  } else {
+    return false;
+  }
+}
+
   /* 실제 서비스에선 필요 없음 */
 export const isScaleRequired = (url) => {
   let cn = '';
