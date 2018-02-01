@@ -1,7 +1,6 @@
 import React from 'react';
 
 function MainTitle(props) {
-  console.log(props);
   const regx = /detail/g;
   const isDetailPage = regx.test(props.match.path);
   if(isDetailPage) {

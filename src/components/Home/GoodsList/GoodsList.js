@@ -28,7 +28,7 @@ class GoodsList extends Component {
   }
 
   renderGoodsItem = (items) => {
-    
+    console.log(items);
     return items.map((item, index) => {
       const {
         id,
@@ -78,7 +78,6 @@ class GoodsList extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <ul className="goods_wrapper">
         { this.renderGoodsItem(this.props.goods) }
