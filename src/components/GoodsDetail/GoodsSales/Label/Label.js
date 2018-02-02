@@ -2,6 +2,13 @@ import React, { Fragment } from 'react';
 import { numberWithCommas } from 'services/utils';
 
 function Label(props) {
+  const {
+    name,
+    info,
+    dcRate,
+    geniePrice,
+    amount
+  } = props;
   let classnames = '';
   if(props.name === '정상가') {
     classnames = 'cancel';
@@ -9,23 +16,23 @@ function Label(props) {
     classnames = '';
   }
 
-  console.log(typeof props.info);
+  console.log(typeof info);
   let markedPrice;
-  if(typeof props.info === 'number') {
-    markedPrice = numberWithCommas(props.info);
+  if(typeof info === 'number') {
+    markedPrice = numberWithCommas(info);
   }
   return (
     <div className={props.dcRate ? 'row dc' : 'row'}>
       <div className="label">
-        <span className="label_name">{props.name}</span>
+        <span className="label_name">{name}</span>
       </div>
       <div className="infos">
-        { props.dcRate ? 
+        { dcRate ? 
           <Fragment>
-            <span className="dc_rate"><strong>{numberWithCommas(props.dcRate)}</strong> %</span>
-            <span className="genie_price"><strong>{props.geniePrice}</strong> 원</span>
+            <span className="dc_rate"><strong>{dcRate}</strong> %</span>
+            <span className="genie_price"><strong>{numberWithCommas(amount * geniePrice)}</strong> 원</span>
           </Fragment> :
-          <span className={`info_txt ${classnames}`}>{markedPrice}원</span>
+          <span className={`info_txt ${classnames}`}>{classnames === '' ? info : markedPrice}원</span>
         }
       </div>
     </div>

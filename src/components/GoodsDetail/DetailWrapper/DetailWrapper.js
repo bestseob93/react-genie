@@ -18,10 +18,6 @@ class DetailWrapper extends Component {
     }
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.props.goods !== nextProps.goods;
-  }
-
   componentWillUnmount() {
     this.setState({
       isDataChanged: false
@@ -29,7 +25,7 @@ class DetailWrapper extends Component {
   }
 
   render() {
-    const { goods } = this.props;
+    const { goods, handleChange, amount } = this.props;
     if(!this.state.isDataChanged) {
       return (
         <section className="detail_wrapper">
@@ -70,6 +66,8 @@ class DetailWrapper extends Component {
               </div>
             </div>
             <GoodsSales
+              handleChange={handleChange}
+              amount={amount}
               price={goods.get('LIST_PRICE')}
               dcRate={goods.get('DC_RATE')}
               origin={goods.get('ORIGIN')}

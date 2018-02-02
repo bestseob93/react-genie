@@ -13,6 +13,10 @@ import { actionCreators as uiActions } from 'ducks/ui.duck';
  * @class
  */
 class GoodsDetail extends Component {
+  state = {
+    amount: 2
+  };
+  
   componentDidMount() {
     this.initialize();
   }
@@ -30,6 +34,25 @@ class GoodsDetail extends Component {
     UiActions.setSpinnerVisible({ visiblity: false });
   }
   
+  handleChange = (ev, amountInput) => {
+    ev.preventDefault();
+    if(this.state.amount < 2) {
+      this.setState({
+        amount: 2
+      });
+      alert("최소 2개 이상 선택하셔야 합니다.");
+    } else {
+      if(amountInput === 'plus') {
+        this.setState({
+          amount: this.state.amount + 1
+        });
+      } else if(amountInput === 'minus') {
+        this.setState({
+          amount: this.state.amount - 1
+        });
+      }
+    }
+  }
   
   render() {
     console.log(this.props);
@@ -37,7 +60,7 @@ class GoodsDetail extends Component {
     return (
       <Fragment>
         <MainTitle {...this.props} GOODS_NM={goods && goods.get('GOODS_NM')} />
-        <DetailWrapper goods={goods} />
+        <DetailWrapper goods={goods} handleChange={this.handleChange} amount={this.state.amount} />
       </Fragment>
     );
   }
