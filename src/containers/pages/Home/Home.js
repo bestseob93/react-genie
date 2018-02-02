@@ -14,13 +14,15 @@ class Home extends Component {
   constructor(props) {
     super(props);
 
+    this.timerId_3 = null;
+    this.timerId_5 = null;
+
     this.state = {
-      stuffs: this.props.stuffs,
+      stuffs: this.props.stuffs.toJS(),
       swapped: false,
       first: true
     };
   }
-  
 
   async componentDidMount() {
     const { UiActions, GoodsActions } = this.props;
@@ -46,13 +48,13 @@ class Home extends Component {
   componentWillReceiveProps(nextProps) {
     this.setState({
       ...this.state,
-      stuffs: nextProps.stuffs
+      stuffs: nextProps.stuffs.toJS()
     });
   }
 
   componentDidUpdate(prevProps, prevState) {
     if(!this.state.first) {
-      setTimeout(() => {
+      this.timerId_5 = setTimeout(() => {
         this.toggleGoodsList(this.state.swapped);
       }, 5000);
     }
@@ -60,12 +62,16 @@ class Home extends Component {
 
   // TODO: setTimeout 메쏘드로 어떻게할지
   componentWillUnmount() {
-    clearTimeout(global.setTimeout);
+    if(this.timerId_3 || this.timerId_5) {
+      clearTimeout(this.timerId_3);
+      clearTimeout(this.timerId_5);
+    };
   }
 
   timeTravel = () => {
+    const self = this;
     return new Promise((resolve, reject) => {
-      setTimeout(() => {
+      self.timerId_3 = setTimeout(() => {
         resolve();
       }, 3000);
     });

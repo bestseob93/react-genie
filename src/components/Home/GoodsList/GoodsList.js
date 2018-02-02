@@ -83,6 +83,7 @@ class GoodsList extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <ul className="goods_wrapper">
         { this.renderGoodsItem(this.props.goods) }

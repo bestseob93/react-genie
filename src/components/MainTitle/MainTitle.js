@@ -1,12 +1,12 @@
 import React from 'react';
 
 function MainTitle(props) {
-  const regx = /detail/g;
+  const regx = /GoodsDetail/g;
   const isDetailPage = regx.test(props.match.path);
   if(isDetailPage) {
     return (
       <h1 className="main_title">
-        {props.GOODS_NM}
+        {props.GOODS_NM ? props.GOODS_NM : <div className="mini_loader"></div>}
       </h1>
     );
   } else {

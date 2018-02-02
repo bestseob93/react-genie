@@ -21,13 +21,13 @@ export default handleActions({
     return state.set('isInit', true);
   },
   [`${types.GET_GOODS_THUMBS}_FULFILLED`]: (state, action) => {
-    return state.set('goodsThumbs', action.payload)
+    return state.set('goodsThumbs', fromJS(action.payload));
   },
   [`${types.GET_GOODS_THUMBS}_REJECTED`]: (state, action) => {
-    return state.set('goodsThumbs', action.payload)
+    return state.set('goodsThumbs', action.payload);
   },
   [`${types.GET_GOODS_DETAIL}_FULFILLED`]: (state, action) => {
-    return state.set('goodsDetail', action.payload)
+    return state.set('goodsDetail', fromJS(action.payload));
   }
 }, defaultState);
 
@@ -37,4 +37,3 @@ export const actionCreators = {
   getGoodsThumbnails: createAction(types.GET_GOODS_THUMBS, goodsAPI.requestGoodsThumbnails),
   getGoodsDetail: createAction(types.GET_GOODS_DETAIL, goodsAPI.requestGoodsDetail)
 };
-

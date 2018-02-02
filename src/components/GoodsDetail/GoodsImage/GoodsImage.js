@@ -1,9 +1,9 @@
 import React from 'react';
 
-function GoodsImage() {
-  return (
-    <img alt="우유" src="http://image.lottesuper.co.kr/69/80/21/1/1218069_1_400.jpg" />
-  );
+function GoodsImage({ imgUrl, altInfo }) {
+  return imgUrl === '' ?
+          <div className="bar_loader img_ld"></div> :
+          <img alt={altInfo} src={imgUrl} />;
 }
 
 export default GoodsImage;
