@@ -19,7 +19,7 @@ class GoodsDetail extends Component {
 
   initialize = async () => {
     const { GoodsActions, UiActions, match } = this.props;
-    // UiActions.setSpinnerVisible({ visiblity: true });
+    UiActions.setSpinnerVisible({ visiblity: true });
     try {
       await GoodsActions.getGoodsDetail(match.params.goods_no);
     } catch (e) {

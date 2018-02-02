@@ -37,6 +37,14 @@ export const isScaleRequired = (url, fromAnimated) => {
   return cn;
 }
 
+/* comma 변환 */
+export const numberWithCommas = (x) => {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+
+출처: http://fruitdev.tistory.com/160 [과일가게 개발자]
+
 Array.prototype.swap = function (x,y) {
   var b = this[x];
   this[x] = this[y];

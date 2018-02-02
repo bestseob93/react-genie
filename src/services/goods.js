@@ -46,22 +46,22 @@ export const requestGoodsThumbnails = (results) => {
 
 export const requestGoodsDetail = (goods_no) => {
   return new Promise((resolve, reject) => {
-    let i = 0;
-    let arrLen = DETAIL_DATA.length;
-    let result;
-    // for(i = 0; i < arrLen; i += 1) {
-    //   console.log(DETAIL_DATA[i].GOODS_NO);
-    //   if(DETAIL_DATA[i].GOODS_NO === parseInt(goods_no, 10)) {
-    //     result = DETAIL_DATA[i];
-    //   }
-    // }
-    result = DETAIL_DATA[3];
     setTimeout(() => {
+      let i = 0;
+      let arrLen = DETAIL_DATA.length;
+      let result;
+      for(i = 0; i < arrLen; i += 1) {
+        console.log(DETAIL_DATA[i].GOODS_NO);
+        if(DETAIL_DATA[i].GOODS_NO === parseInt(goods_no, 10)) {
+          result = DETAIL_DATA[i];
+        }
+      }
+      console.log(result);
       if(result) {
         resolve(result);
       } else {
         reject("저장된 데이터가 존재하지 않습니다.");
       }
-    }, 3000);
+    }, 1500);
   });
 }
