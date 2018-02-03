@@ -1,3 +1,7 @@
+/**
+ * check element is in the corners
+ * @param {number} id - data's id
+ */
 export const borderRadius = (id) => {
   switch(id) {
     case 0:
@@ -13,6 +17,10 @@ export const borderRadius = (id) => {
   }
 }
 
+/**
+ * check animation required
+ * @param {number} pR - PRIORITY RANK
+ */
 export const isAnimatedRequired = (pR) => {
   if(pR > 13) {
     return true;
@@ -21,7 +29,11 @@ export const isAnimatedRequired = (pR) => {
   }
 }
 
-  /* 실제 서비스에선 필요 없음 */
+/**
+ * Scale image size 200*200 to 100*100, useless for stable service.
+ * @param {string} url - image url
+ * @param {boolean} fromAnimated - from AnimatedItem Component or Not.
+ */
 export const isScaleRequired = (url, fromAnimated) => {
   let cn = '';
   const regex = /jpg/g;
@@ -37,9 +49,12 @@ export const isScaleRequired = (url, fromAnimated) => {
   return cn;
 }
 
-/* comma 변환 */
-export const numberWithCommas = (x) => {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+/**
+ * Add a comma for every three digits.
+ * @param {number} x - goods price
+ */
+export const numberWithCommas = (price) => {
+  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 Array.prototype.swap = function (x,y) {

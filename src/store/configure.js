@@ -10,6 +10,10 @@ const middlewares = [
     promiseMiddleware(),
 ];
 
+/**
+ * Redux Configure
+ * @param {object} preloadedState - App's initial State
+ */
 const configure = preloadedState => createStore(
   reducers,
   preloadedState, // 초기 state 설정하려면 이 곳에서

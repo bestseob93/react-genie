@@ -1,17 +1,6 @@
 import storage from './storage';
 import { DETAIL_DATA } from './JSONdata';
 
-export const getProducts = () => {
-  return new Promise((resolve, reject) => {
-    const products = JSON.parse(localStorage.getItem('product')) || [];
-    console.log(products);
-    resolve(products);
-    if(!products) {
-      reject('No Data');
-    }
-  });
-}
-
 /**
  * 상품 리스트 초기 데이터 앱 실행 시 로컬 스토로지에 저장
  * @param {Object[]} datas - 상품 리스트
@@ -33,6 +22,9 @@ export const initDatas = (datas) => {
   });
 }
 
+/**
+ * request Goods Thumbnails and simple Data for Home.
+ */
 export const requestGoodsThumbnails = (results) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -44,6 +36,10 @@ export const requestGoodsThumbnails = (results) => {
   });
 }
 
+/**
+ * request Goods Detail Data with goods number
+ * @param {number} goods_no - goods number
+ */
 export const requestGoodsDetail = (goods_no) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {

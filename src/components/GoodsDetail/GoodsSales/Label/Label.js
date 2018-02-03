@@ -32,7 +32,7 @@ function Label(props) {
             <span className="dc_rate"><strong>{dcRate}</strong> %</span>
             <span className="genie_price"><strong>{numberWithCommas(amount * geniePrice)}</strong> 원</span>
           </Fragment> :
-          <span className={`info_txt ${classnames}`}>{classnames === '' ? info : markedPrice}원</span>
+          <span className={`info_txt ${classnames}`}>{classnames === '' ? info : `${markedPrice}원`}</span>
         }
       </div>
     </div>

@@ -1,3 +1,7 @@
+/**
+ * load GigaGenie SDK.
+ * @param {React.Component} component - react component
+ */
 module.exports = function(component) {
   (function(d, s, id, cb) {
     const element = d.getElementsByTagName('title')[0];

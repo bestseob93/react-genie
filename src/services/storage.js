@@ -1,4 +1,6 @@
-
+/**
+ * LocalStorage
+ */
 export default (function() {
     const st = localStorage || {};
     return {
