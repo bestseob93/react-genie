@@ -1,9 +1,9 @@
 import React from 'react';
 
-function ReviewScore() {
+function ReviewScore({ score }) {
   return (
     <div className="review_item score">
-      9.7
+      {score}
     </div>
   );
 }

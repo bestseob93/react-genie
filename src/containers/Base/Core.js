@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import GenieSDK from './GenieSDK';
 import SpinnerContainer from './SpinnerContainer';
@@ -22,6 +23,7 @@ class Core extends Component {
   }
   
   render() {
+    console.log(this.props);
     return [
       <GenieSDK key={1} {...this.props} />,
       <SpinnerContainer key={2} />
@@ -29,7 +31,7 @@ class Core extends Component {
   }
 }
 
-export default connect(
+export default withRouter(connect(
   state => ({
     genieLoaded: state.genie.get('genieLoaded')
   }),
@@ -38,4 +40,4 @@ export default connect(
     DebugActions: bindActionCreators(debugActions, dispatch),
     GoodsActions: bindActionCreators(goodsActions, dispatch)
   })
-)(Core);
+)(Core));

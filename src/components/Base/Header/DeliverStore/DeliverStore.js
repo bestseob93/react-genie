@@ -1,5 +1,8 @@
 import React from 'react';
 
+/**
+ * 
+ */
 function DeliverStore() {
   return (
     <span className="delivery_store">

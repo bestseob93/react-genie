@@ -70,13 +70,14 @@ class GenieSDK extends Component {
   handleVoiceCommand = (event) => {
     console.log('hi');
     console.log(event);
+    const { history } = this.props;
     switch(event) {
       case 'nextPage':
         alert("다음페이지 호출됨");
         console.log(this.state);
         break;
       case 'prevPage':
-        alert("이전페이지 호출됨");
+        history.push('/');
         break;
       default:
         break;
@@ -113,7 +114,7 @@ class GenieSDK extends Component {
   render() {
     const PUBLIC_PATH = process.env.REACT_APP_PUBLIC_PATH || '';
     if(this.state.chgView) {
-      return <Redirect to={`${PUBLIC_PATH}/detail`} />;
+      return <Redirect to={`${PUBLIC_PATH}/GoodsDetail`} />;
     } else {
       return (
         <div>

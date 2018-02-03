@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { borderRadius, isScaleRequired } from 'services/utils';
+import { borderRadius, isScaleRequired, whichTransitionEvent } from 'services/utils';
 
 class AnimatedItem extends Component {
   componentDidMount() {
-    this.goodTitle.addEventListener('animationend', () => {
-      this.goodTitle.classList.remove("animated");
-      this.goodTitle.classList.remove("fadeInDown");
-    });
-    this.goodImage.addEventListener('animationend', () => {
-      this.goodImage.classList.remove("animated");
-      this.goodImage.classList.remove("fadeInDown");
-    });
+    this.handleAddEvListener();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -23,6 +16,32 @@ class AnimatedItem extends Component {
   componentWillUnmount() {
     console.group("AnimatedItem: componentWillUnmount");
     console.groupEnd();
+  }
+
+  handleAddEvListener = () => {
+    const whichTransitionEvent = () => {
+      const el = document.createElement('fake');
+      const transitions = {
+        'animation':'animationend',
+        'OAnimation':'oAnimationEnd',
+        'MSAnimation':'MSAnimationEnd',
+        'WebkitAnimation':'webkitAnimationEnd'
+      };
+    
+      for(let t in transitions) {
+        if(transitions.hasOwnProperty(t) && el.style[t] !== undefined) {
+            return transitions[t];
+        }
+      }
+    }
+    this.goodTitle.addEventListener(whichTransitionEvent(), () => {
+      this.goodTitle.classList.remove("animated");
+      this.goodTitle.classList.remove("fadeInDown");
+    });
+    this.goodImage.addEventListener(whichTransitionEvent(), () => {
+      this.goodImage.classList.remove("animated");
+      this.goodImage.classList.remove("fadeInDown");
+    });
   }
 
   render() {

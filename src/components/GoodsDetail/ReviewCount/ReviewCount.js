@@ -1,9 +1,9 @@
 import React from 'react';
 
-function ReviewCount() {
+function ReviewCount({ count }) {
   return (
     <div className="review_item count">
-      (17건)
+      ({count}건)
     </div>
   );
 }
