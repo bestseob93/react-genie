@@ -27,6 +27,7 @@ class GenieSDK extends Component {
       if(result_cd === 200) {
         this.gigagenie.voice.onVoiceCommand = this.handleVoiceCommand;
         this.gigagenie.voice.onActionEvent = this.handleActionEvent;
+        this.gigagenie.voice.onRequestClose = this.handleRequestClose;
 
         GenieActions.setGenieLoaded();
 
@@ -149,6 +150,12 @@ class GenieSDK extends Component {
       default:
     }
     alert(this.props.location.pathname);
+  }
+
+  handleRequestClose = () => {
+    gigagenie.voice.svcFinished(null, (result_cd, result_msg, extra) => {
+
+    });
   }
 
   handleChange = (ev) => {

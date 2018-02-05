@@ -5,6 +5,9 @@ import ReviewScore from '../ReviewScore';
 import Stars from '../Stars';
 import GoodsSales from '../GoodsSales';
 
+/**
+ * GoodsDetail Wrapper Component
+ */
 class DetailWrapper extends Component {
   state = {
     isDataChanged: false

@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import GoodsTable from 'components/Home/GoodsTable';
-import GenieHelp from 'components/Base/Footer/GenieHelp';
+// import GenieHelp from 'components/Base/Footer/GenieHelp';
 import MainTitle from 'components/MainTitle';
 
 import { actionCreators as goodsActions } from 'ducks/goods.duck';
@@ -84,7 +84,6 @@ class Home extends Component {
     let i = 0;
     let arrLen = oldIndexes.length;
     for(i = 0; i < arrLen; i++) {
-      console.warn(a[oldIndexes[i]]);
       a.swap(oldIndexes[i], newIndexes[i]);
     }
 
@@ -105,14 +104,11 @@ class Home extends Component {
   }
 
   render() {
-    console.group('render');
-    console.log(this.state);
-    console.groupEnd();
     return (
       <Fragment>
         <MainTitle {...this.props} />
         <GoodsTable goods={this.state.stuffs} swapped={this.state.swapped} />
-        <GenieHelp genieMsg={this.props.genieMsg} />
+        {/* <GenieHelp genieMsg={this.props.genieMsg} /> */}
       </Fragment>
     );
   }

@@ -34,28 +34,23 @@ class GoodsDetail extends Component {
     UiActions.setSpinnerVisible({ visiblity: false });
   }
   
-  handleChange = (ev, amountInput) => {
-    ev.preventDefault();
-    if(this.state.amount < 2) {
+  handleChange = (ev, amountInput, amount) => {
+    ev.stopPropagation();
+    this.setState({
+      ...this.state,
+      amount
+    });
+
+    if(amount < 2) {
+      alert("상품은 최소 2개 이상 선택하셔야 합니다.");
       this.setState({
         amount: 2
       });
-      alert("최소 2개 이상 선택하셔야 합니다.");
-    } else {
-      if(amountInput === 'plus') {
-        this.setState({
-          amount: this.state.amount + 1
-        });
-      } else if(amountInput === 'minus') {
-        this.setState({
-          amount: this.state.amount - 1
-        });
-      }
     }
   }
   
   render() {
-    console.log(this.props);
+    console.log(this.state.amount);
     const { goods } = this.props;
     return (
       <Fragment>

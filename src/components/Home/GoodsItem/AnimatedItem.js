@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { borderRadius, isScaleRequired, whichTransitionEvent } from 'services/utils';
+import { borderRadius, isScaleRequired } from 'services/utils';
 
+/**
+ * Rendering in Home, which involved Animation.
+ */
 class AnimatedItem extends Component {
   componentDidMount() {
     this.handleAddEvListener();
@@ -47,12 +50,9 @@ class AnimatedItem extends Component {
   render() {
     const {
       index,
-      itemId,
       goodsCategory,
       goodsNo,
       imgUrl,
-      keywordType,
-      priorityRank
     } = this.props;
 
     const PUBLIC_PATH = process.env.REACT_APP_PUBLIC_PATH || '';

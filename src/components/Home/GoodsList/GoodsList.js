@@ -9,26 +9,11 @@ class GoodsList extends Component {
     goods: []
   }
 
-  // componentDidMount() {
-  //   const { GoodsActions } = this.props;
-  //   setTimeout(() => {
-  //     GoodsActions.toggleDatas();
-  //   }, 3000);
-  // }
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   const { GoodsActions } = this.props;
-  //   setTimeout(() => {
-  //     GoodsActions.toggleDatas();
-  //   });
-  // }
-
   static propTypes = {
     goods: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired
   }
 
   renderGoodsItem = (items) => {
-    console.log(items);
     return items.map((item, index) => {
       const {
         id,
@@ -38,7 +23,6 @@ class GoodsList extends Component {
         KEYWORD,
         PRIORITY_RANK
       } = item;
-      console.log(index + GOODS_CATEGORY);
       const isFirstAnimation = (i) => {
         if(i === 7 || i === 9 || i === 12 || i === 14) {
           
@@ -50,8 +34,6 @@ class GoodsList extends Component {
       }
       
       if(isFirstAnimation(index) && KEYWORD === '검색') {
-        
-        console.log(items[index]);
         return (
           <AnimatedItem
             key={`item-${index}`}
@@ -83,7 +65,6 @@ class GoodsList extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <ul className="goods_wrapper">
         { this.renderGoodsItem(this.props.goods) }

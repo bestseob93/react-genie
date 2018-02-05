@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import Logo from 'components/Base/Header/Logo';
@@ -23,9 +22,8 @@ class HeaderContainer extends Component {
 export default connect(
   state => ({
     username: state.genie.get('username'),
-    address: state.genie.get('address')
+    address: state.genie.get('address'),
+    logged: state.auth.get('logged')
   }),
-  dispatch => ({
-
-  })
+  null
 )(HeaderContainer);

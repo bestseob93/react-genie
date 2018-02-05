@@ -2,6 +2,17 @@ import React from 'react';
 import Label from './Label';
 import LabelInput from './LabelInput';
 
+/**
+ * GoodsSales Functional Component (Wrap goods detail infos)
+ * @param {function} handleChange
+ * @param {number} amount
+ * @param {number} price
+ * @param {number} dcRate
+ * @param {string} origin
+ * @param {string} company
+ * @param {string} spec
+ * @return {React.element}
+ */
 function GoodsSales({
   handleChange,
   amount,

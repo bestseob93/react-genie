@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 // import { bindActionCreators } from 'redux';
 // import { connect } from 'react-redux';
 
@@ -12,6 +13,7 @@ class SpeakGuide extends Component {
    * @return {ReactElement} SpeakGuideList Wrapper
    */
   render() {
+    console.log(this.props);
     return (
       <section className="speak_guide">
         <SpeakGuideList />
@@ -20,4 +22,4 @@ class SpeakGuide extends Component {
   }
 }
 
-export default SpeakGuide;
+export default withRouter(SpeakGuide);

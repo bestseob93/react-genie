@@ -29,8 +29,6 @@ function GoodsItem({
    * 7. marginLeft 268px
    * 17 ~. 차순위는 애니메이션으로
    */
-
-   console.log('generalItem: ', goodsCategory);
   if(index === 0) {
     return (
       <li className="event goods_box">

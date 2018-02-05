@@ -1,6 +1,15 @@
 import React, { Fragment } from 'react';
 import { numberWithCommas } from 'services/utils';
 
+/**
+ * GoodsInfo Label Functional Component
+ * @param {string} props.name - 라벨에 붙을 이름
+ * @param {string} props.info - 상품 상세 정보
+ * @param {number} props.dcRate - 상품 할인율
+ * @param {number} props.geniePrice - 할인 적용된 상품가
+ * @param {number} props.amount - 삼품 수량
+ * @return {React.element}
+ */
 function Label(props) {
   const {
     name,
