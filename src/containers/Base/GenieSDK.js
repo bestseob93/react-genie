@@ -6,12 +6,10 @@ import loadGG from 'services/loadGG';
 class GenieSDK extends Component {
   state = {
     ttsText: '',
-    chgView: false
   };
 
   componentDidMount() {
     const { genieLoaded } = this.props;
-    console.log(genieLoaded);
     if(!genieLoaded) {
       loadGG(this); // GigaGenie init
     }
@@ -32,17 +30,38 @@ class GenieSDK extends Component {
 
         GenieActions.setGenieLoaded();
 
-        this.gigagenie.appinfo.getContainerId(null, (result_cds, result_msgs, extras) => {
-              if(result_cds === 200) {
-                  DebugActions.handleDebugValue({
-                    value: JSON.stringify(extras)
-                  });
+        if(extra.devicetype === "GGENIE") {
+          GenieActions.setAppDevice({
+            deviceType: 'GGENIE'
+          });
 
-                  // this.sendTTS();
-              } else {
-                  console.log("getContainerId is fail.");
-              }
-        });
+          this.gigagenie.appinfo.getUserSetInfo(null, (result_cds, result_msgs, extras) => {
+            if(result_cds === 200) {
+                DebugActions.handleDebugValue({
+                  value: JSON.stringify(extras)
+                });
+                GenieActions.setUserInfo({
+                  username: extras.name,
+                  address: extras.address
+                });
+            } else {
+                console.log("getContainerId is fail.");
+            }
+          });
+        } else {
+          GenieActions.setAppDevice({
+            deviceType: 'PC'
+          });
+          
+          this.gigagenie.appinfo.getContainerId(null, (result_cds, result_msgs, extras) => {
+            if(result_cds === 200) {
+              DebugActions.handleDebugValue({
+                value: JSON.stringify(extras)
+              });
+            }
+          });
+        }
+        this.sendTTS();
       }
     });
   }
@@ -51,7 +70,7 @@ class GenieSDK extends Component {
     const { DebugActions } = this.props;
 
     const options = {
-      mode: 2, // 0: extra.voicetext, 1: onActionEvent, 2: onVoiceCommand
+      mode: 1, // 0: extra.voicetext, 1: onActionEvent, 2: onVoiceCommand
       voicemsg: '말해보세요'
     };
 
@@ -84,11 +103,19 @@ class GenieSDK extends Component {
     }
   }
 
-  handleActionEvent = (ev) => {
+  handleActionEvent = (extra) => {
+    alert(JSON.stringify(extra));
+    this.setState({
+      ...this.state,
+      log: JSON.stringify(extra)
+    });
+    
+    alert(this.props.location.pathname);
     const { DebugActions } = this.props;
     DebugActions.handleDebugValue({
       value: "함수 받음"
     });
+    this.sendTTS();
   }
 
   handleChange = (ev) => {
@@ -131,6 +158,7 @@ class GenieSDK extends Component {
           >
             전송
           </button>
+          {this.state.log}
         </div>
       );
     }
