@@ -43,16 +43,9 @@ export const requestGoodsThumbnails = (results) => {
 export const requestGoodsDetail = (goods_no) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      let i = 0;
-      let arrLen = DETAIL_DATA.length;
-      let result;
-      for(i = 0; i < arrLen; i += 1) {
-        console.log(DETAIL_DATA[i].GOODS_NO);
-        if(DETAIL_DATA[i].GOODS_NO === parseInt(goods_no, 10)) {
-          result = DETAIL_DATA[i];
-        }
-      }
-      console.log(result);
+      const result = DETAIL_DATA.find(
+        data => data.GOODS_NO === parseInt(goods_no, 10));
+      
       if(result) {
         resolve(result);
       } else {

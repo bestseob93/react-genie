@@ -9,6 +9,7 @@ import SpinnerContainer from './SpinnerContainer';
 import { actionCreators as genieActions } from 'ducks/genie.duck';
 import { actionCreators as debugActions } from 'ducks/debug.duck';
 import { actionCreators as goodsActions } from 'ducks/goods.duck';
+import { actionCreators as authActions } from 'ducks/auth.duck';
 
 import { HOME_DATA } from 'services/JSONdata';
 
@@ -33,11 +34,13 @@ class Core extends Component {
 
 export default withRouter(connect(
   state => ({
-    genieLoaded: state.genie.get('genieLoaded')
+    genieLoaded: state.genie.get('genieLoaded'),
+    goods: state.goods.get('goodsThumbs')
   }),
   dispatch => ({
     GenieActions: bindActionCreators(genieActions, dispatch),
     DebugActions: bindActionCreators(debugActions, dispatch),
-    GoodsActions: bindActionCreators(goodsActions, dispatch)
+    GoodsActions: bindActionCreators(goodsActions, dispatch),
+    AuthActions: bindActionCreators(authActions, dispatch)
   })
 )(Core));

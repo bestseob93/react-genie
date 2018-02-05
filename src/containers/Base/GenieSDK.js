@@ -61,17 +61,17 @@ class GenieSDK extends Component {
             }
           });
         }
-        this.sendTTS();
+        this.handleGetVoiceText();
       }
     });
   }
 
-  sendTTS = () => {
+  handleGetVoiceText = () => {
     const { DebugActions } = this.props;
 
     const options = {
       mode: 1, // 0: extra.voicetext, 1: onActionEvent, 2: onVoiceCommand
-      voicemsg: '말해보세요'
+      voicemsg: '롯데슈퍼에 오신 것을 환영합니다. 발화가이드를 따라해보세요.'
     };
 
     this.gigagenie.voice.getVoiceText(options, (result_cd, result_msg, extra) => {
@@ -86,8 +86,21 @@ class GenieSDK extends Component {
     });
   }
 
+  handleSendTTS = (txt) => {
+    const options = {
+      ttstext: txt
+    };
+
+    this.gigagenie.voice.sendTTS(options, (result_cd, result_msg, extra) => {
+      if(result_cd === 200) {
+        // 성공
+      } else {
+        // extra.reason에 voice 오류 전달
+      }
+    })
+  }
+
   handleVoiceCommand = (event) => {
-    console.log('hi');
     console.log(event);
     const { history } = this.props;
     switch(event) {
@@ -96,7 +109,8 @@ class GenieSDK extends Component {
         console.log(this.state);
         break;
       case 'prevPage':
-        history.push('/');
+        const pathTo = `${process.env.REACT_APP_PUBLIC_PATH}`;
+        history.push(pathTo);
         break;
       default:
         break;
@@ -104,18 +118,37 @@ class GenieSDK extends Component {
   }
 
   handleActionEvent = (extra) => {
+    const { AuthActions, history, goods } = this.props;
     alert(JSON.stringify(extra));
     this.setState({
       ...this.state,
       log: JSON.stringify(extra)
     });
-    
+
+    switch(extra.actioncode) {
+      case 'ShowDetail':
+        /**
+         * Home에 뿌려진 데이터에서 발화구문하고 같은 이름을 가진 상품번호 불러온 뒤, 페이지 전환
+         */
+        const goodsNo = goods.find(data => data.GOODS_CATEGORY === extra.parameter.NE-Prd).GOODS_NO;
+        const pathTo = `${process.env.REACT_APP_PUBLIC_PATH}/ShowDetail/${goodsNo}`;
+        history.push(pathTo);
+        break;
+      case 'CCInform':
+        this.handleSendTTS('010 2448 7085');
+        break;
+      case 'Login':
+        AuthActions.login();
+        break;
+      case 'Logout':
+        AuthActions.logout();
+        break;
+      case 'AddProd':
+        // 개수에 따른 예외 처리
+        break;
+      default:
+    }
     alert(this.props.location.pathname);
-    const { DebugActions } = this.props;
-    DebugActions.handleDebugValue({
-      value: "함수 받음"
-    });
-    this.sendTTS();
   }
 
   handleChange = (ev) => {
