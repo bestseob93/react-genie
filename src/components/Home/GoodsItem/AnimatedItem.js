@@ -46,6 +46,9 @@ class AnimatedItem extends Component {
       this.goodImage.classList.remove("fadeInDown");
     });
   }
+  
+  handleBlur = (ev) => {
+  }
 
   render() {
     const {
@@ -59,7 +62,7 @@ class AnimatedItem extends Component {
     
     return (
       <li className="goods_box">
-        <Link to={`${PUBLIC_PATH}/ShowDetail/${goodsNo}`} className={borderRadius(index)}>
+        <Link to={`${PUBLIC_PATH}/ShowDetail/${goodsNo}`} className={`${borderRadius(index)} goods_link`} onFocus={this.handleBlur}>
           <p
             ref={(goodTitle) => this.goodTitle = goodTitle}
             className={`animated fadeInDown ${isScaleRequired(imgUrl, true) === 'a' ? 'a' : ''} goods_title`}

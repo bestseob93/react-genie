@@ -32,7 +32,7 @@ function GoodsItem({
   if(index === 0) {
     return (
       <li className="event goods_box">
-        <Link to={`${PUBLIC_PATH}/ShowDetail/${goodsNo}`} className={borderRadius(index)}>
+        <Link to={`${PUBLIC_PATH}/ShowDetail/${goodsNo}`} className={`${borderRadius(index)} goods_link`}>
           <div className="event_label">
             <span>이벤트</span>
           </div>
@@ -44,7 +44,7 @@ function GoodsItem({
   } else if(index >= 1 && index <= 3) {
     return (
         <li className="goods_box">
-          <Link to={`${PUBLIC_PATH}/ShowDetail/${goodsNo}`} className={borderRadius(index)}>
+          <Link to={`${PUBLIC_PATH}/ShowDetail/${goodsNo}`} className={`${borderRadius(index)} goods_link`}>
             <p className="goods_title">{goodsCategory}</p>
             <img alt={goodsCategory} src={imgUrl} className={isScaleRequired(imgUrl)} />
           </Link>
@@ -53,7 +53,7 @@ function GoodsItem({
   } else if(index === 6) {
     return (
       <li className="goods_box" style={{marginLeft: '268px'}}>
-        <Link to={`${PUBLIC_PATH}/ShowDetail/${goodsNo}`} className={borderRadius(index)}>
+        <Link to={`${PUBLIC_PATH}/ShowDetail/${goodsNo}`} className={`${borderRadius(index)} goods_link`}>
           <p className="goods_title">{goodsCategory}</p>
           <img alt={goodsCategory} src={imgUrl} className={isScaleRequired(imgUrl)} />
         </Link>
@@ -64,7 +64,7 @@ function GoodsItem({
   } else {
     return (
       <li className="goods_box">
-        <Link to={`${PUBLIC_PATH}/ShowDetail/${goodsNo}`} className={borderRadius(index)}>
+        <Link to={`${PUBLIC_PATH}/ShowDetail/${goodsNo}`} className={`${borderRadius(index)} goods_link`}>
           <p className="goods_title">{goodsCategory}</p>
           <img alt={goodsCategory} src={imgUrl} className={`${isScaleRequired(imgUrl)}`} />
         </Link>

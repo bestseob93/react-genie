@@ -3,7 +3,7 @@ import React from 'react';
 function SpeakGuideItem(props) {
   return (
     <li className="guide_item">
-      <span>"{props.desc}"</span>
+      <a href="#"><span>"{props.desc}"</span></a>
     </li>
   );
 }

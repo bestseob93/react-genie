@@ -46,7 +46,7 @@ class GenieSDK extends Component {
               });
             }
           });
-          
+
           this.gigagenie.appinfo.getUserSetInfo(null, (result_cds, result_msgs, extras) => {
             if(result_cds === 200) {
                 DebugActions.handleDebugValue({
@@ -137,7 +137,7 @@ class GenieSDK extends Component {
   }
 
   handleActionEvent = (extra) => {
-    const { AuthActions, history, location, goods } = this.props;
+    const { AuthActions, history, match, goods } = this.props;
     this.setState({
       ...this.state,
       log: JSON.stringify(extra)
@@ -147,7 +147,6 @@ class GenieSDK extends Component {
         /**
          * Home에 뿌려진 데이터에서 발화구문하고 같은 이름을 가진 상품번호 불러온 뒤, 페이지 전환
          */
-        alert(location.pathname);
         const goodsNo = goods.toJS().find(data => data.GOODS_CATEGORY === extra.parameter['NE-Prd']).GOODS_NO;
         const pathTo = `${extra.actionpath}/${goodsNo}`;
 
@@ -157,12 +156,6 @@ class GenieSDK extends Component {
         this.handleSendTTS('010 2448 7085');
         break;
       case 'Login':
-      let options = {
-        ttstext: '로그인 완료'
-      }
-        this.gigagenie.sendTTS(options, (result_cd, result_msg, extra) => {
-
-        });
         AuthActions.login();
         break;
       case 'Logout':
@@ -170,6 +163,10 @@ class GenieSDK extends Component {
         break;
       case 'AddProd':
         // 개수에 따른 예외 처리
+        break;
+      case 'Order':
+        let superWeb = `http://www.lottesuper.co.kr/handler/goods/GoodsDetail?goods_no=${match.params.goods_no}&tracking=Main_2SCL_takt02&sale_shop_sct_cd=00`
+        this.handleAppPush('EXEC_WEB', superWeb);
         break;
       default:
     }
@@ -200,6 +197,22 @@ class GenieSDK extends Component {
         chgView: true
       });
     }
+  }
+
+  handleAppPush = (msgType, url) => {
+    const options = {
+      target: 'COMP_APP', // 해당 G-BOX에 연계된 Companion App 타겟
+      msgtype: msgType,
+      msg: url,
+      popuptext: '롯데슈퍼 TV로부터 알람이 도착했어요!' // 팝업 문구로 android만 적용. null일 경우 Default 메시지 전달.
+    }
+    this.gigagenie.appinfo.sendPushMsg(options, (result_cd, result_msg, extra) => {
+      if(result_cd === 200) {
+        alert("성공적으로 푸쉬 알람을 보냈습니다.");
+      } else {
+        alert(JSON.stringify(extra));
+      }
+    });
   }
 
   render() {

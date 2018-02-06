@@ -2,13 +2,13 @@
   float: left;
   .menu_item {
     float: left;
-    .bordered;
-    border-radius: 30px;
     margin-left: 10px;
     text-align: center;
     a {
       margin: 0 auto;
       width: 114px;
+      .bordered;
+      border-radius: 30px;
       height: 45px;
       line-height: 45px;
       span {
@@ -20,6 +20,9 @@
         letter-spacing: -1px;
         text-align: center;
       }
+    }
+    a:focus {
+      border-color: blue !important;
     }
   }
 }
