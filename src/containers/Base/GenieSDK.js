@@ -35,12 +35,18 @@ class GenieSDK extends Component {
         this.gigagenie.voice.onRequestClose = this.handleRequestClose;
 
         GenieActions.setGenieLoaded();
-
         if(extra.devicetype === "GGENIE") {
           GenieActions.setAppDevice({
             deviceType: 'GGENIE'
           });
-
+          this.gigagenie.appinfo.getUserInfo(null, (info_result_cd, info_result_msg, info_extra) => {
+            if(info_result_cd === 200) {
+              GenieActions.setAppInfo({
+                registWithApp: info_extra.registwithapp
+              });
+            }
+          });
+          
           this.gigagenie.appinfo.getUserSetInfo(null, (result_cds, result_msgs, extras) => {
             if(result_cds === 200) {
                 DebugActions.handleDebugValue({

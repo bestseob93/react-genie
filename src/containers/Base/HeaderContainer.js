@@ -23,7 +23,7 @@ export default connect(
   state => ({
     username: state.genie.get('username'),
     address: state.genie.get('address'),
-    logged: state.auth.get('logged')
+    logged: state.auth.get('isLogged')
   }),
   null
 )(HeaderContainer);

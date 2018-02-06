@@ -8,11 +8,11 @@ function DeliverStore(props) {
   if(props.logged) { 
     return (
       <span className="delivery_store">
-        {props.username}
+        {props.get('username')}
         배송매장
         <strong> 안양점</strong>
         <span className="circle"></span>
-        {props.address}
+        {props.get('address')}
         출발
         <strong> 오늘 오후 1시</strong>
         <span className="circle"></span>
@@ -24,11 +24,9 @@ function DeliverStore(props) {
     // TODO: logged가 false일 때 다른 페이지 뷰 뿌려주기
     return (
       <span className="delivery_store">
-        {props.username}
         배송매장
         <strong> 안양점</strong>
         <span className="circle"></span>
-        {props.address}
         출발
         <strong> 오늘 오후 1시</strong>
         <span className="circle"></span>
