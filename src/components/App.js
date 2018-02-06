@@ -5,7 +5,8 @@ import {
   GoodsDetail,
   HeaderContainer,
   Home,
-  SpeakGuide
+  SpeakGuide,
+  NoMatch
 } from 'containers';
 
 class App extends Component {
@@ -17,6 +18,7 @@ class App extends Component {
         <Switch>
           <Route exact path={`${PUBLIC_PATH}`} component={Home} />
           <Route path={`${PUBLIC_PATH}/ShowDetail/:goods_no`} component={GoodsDetail} />
+          <Route component={NoMatch} />
         </Switch>
         <SpeakGuide />
         <Core />

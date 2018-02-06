@@ -13,7 +13,7 @@ export const borderRadius = (id) => {
     case 16:
       return 'border_b_r';
     default:
-      return;
+      return '';
   }
 }
 
