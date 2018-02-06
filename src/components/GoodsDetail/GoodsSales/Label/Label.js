@@ -25,7 +25,6 @@ function Label(props) {
     classnames = '';
   }
 
-  console.log(typeof info);
   let markedPrice;
   if(typeof info === 'number') {
     markedPrice = numberWithCommas(info);

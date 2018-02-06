@@ -20,7 +20,7 @@ class MainTitle extends Component {
   }
 
   render() {
-    const regx = /GoodsDetail/g;
+    const regx = /ShowDetail/g;
     const isDetailPage = regx.test(this.props.match.path);
     if(isDetailPage) {
       return (
