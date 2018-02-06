@@ -43,6 +43,7 @@ export const requestGoodsThumbnails = (results) => {
 export const requestGoodsDetail = (goods_no) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
+      alert("hi");
       const result = DETAIL_DATA.find(
         data => data.GOODS_NO === parseInt(goods_no, 10));
       

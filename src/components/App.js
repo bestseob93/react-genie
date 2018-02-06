@@ -15,7 +15,7 @@ class App extends Component {
       <div className="container">
         <HeaderContainer />
         <Switch>
-          <Route exact path={`${PUBLIC_PATH}`} component={Home} />
+          <Route exact path={`/${PUBLIC_PATH}`} component={Home} />
           <Route path={`${PUBLIC_PATH}/ShowDetail/:goods_no`} component={GoodsDetail} />
         </Switch>
         <SpeakGuide />
