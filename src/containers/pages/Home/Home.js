@@ -60,7 +60,6 @@ class Home extends Component {
     }
   }
 
-  // TODO: setTimeout 메쏘드로 어떻게할지
   componentWillUnmount() {
     if(this.timerId_3 || this.timerId_5) {
       clearTimeout(this.timerId_3);

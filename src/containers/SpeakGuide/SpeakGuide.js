@@ -25,7 +25,8 @@ class SpeakGuide extends Component {
     console.log('speakguide called');
     const { location } = this.props;
     const regx = /ShowDetail/g;
-    if(regx.test(location.pathname)) {
+    const isDetailPage = regx.test(location.pathname);
+    if(isDetailPage) {
       this.setState({
         guideItem: ['이 상품 두 개 담아줘', '수량변경 해줘', '로그아웃해줘']      
       });
