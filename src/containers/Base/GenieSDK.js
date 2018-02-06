@@ -1,4 +1,3 @@
-/*eslint-disable no-undef*/
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import loadGG from 'services/loadGG';
@@ -6,6 +5,9 @@ import loadGG from 'services/loadGG';
 class GenieSDK extends Component {
   state = {
     ttsText: '',
+    log: '',
+    detailLog: '',
+    pathTo: ''
   };
 
   componentDidMount() {
@@ -23,6 +25,9 @@ class GenieSDK extends Component {
       keytype: process.env.REACT_APP_GENIE_KEY_TYPE
     };
 
+    /**
+     * gigagenie.init
+     */
     this.gigagenie.init(options, (result_cd, result_msg, extra) => {
       if(result_cd === 200) {
         this.gigagenie.voice.onVoiceCommand = this.handleVoiceCommand;
@@ -88,6 +93,7 @@ class GenieSDK extends Component {
   }
 
   handleSendTTS = (txt) => {
+    alert('sendTTS called');
     const options = {
       ttstext: txt
     };
@@ -118,21 +124,29 @@ class GenieSDK extends Component {
     }
   }
 
+  handleTest = () => {
+    const { history } = this.props;
+    const pathTo = `${process.env.REACT_APP_PUBLIC_PATH}`;
+    history.push(pathTo);
+  }
+
   handleActionEvent = (extra) => {
-    const { AuthActions, history, goods } = this.props;
-    alert(JSON.stringify(extra));
-    this.setState({
-      ...this.state,
-      log: JSON.stringify(extra)
-    });
+    const { AuthActions, history, location, goods } = this.props;
 
     switch(extra.actioncode) {
       case 'ShowDetail':
         /**
          * Home에 뿌려진 데이터에서 발화구문하고 같은 이름을 가진 상품번호 불러온 뒤, 페이지 전환
          */
-        const goodsNo = goods.find(data => data.GOODS_CATEGORY === extra.parameter.NE-Prd).GOODS_NO;
-        const pathTo = `${process.env.REACT_APP_PUBLIC_PATH}/ShowDetail/${goodsNo}`;
+        alert(location.pathname);
+        const goodsNo = goods.toJS().find(data => data.GOODS_CATEGORY === extra.parameter['NE-Prd']).GOODS_NO;
+        const pathTo = `${extra.actionpath}/${goodsNo}`;
+        this.setState({
+          ...this.state,
+          log: JSON.stringify(extra),
+          detailLog: goodsNo,
+          pathTo: pathTo
+        });
         history.push(pathTo);
         break;
       case 'CCInform':
@@ -153,7 +167,7 @@ class GenieSDK extends Component {
   }
 
   handleRequestClose = () => {
-    gigagenie.voice.svcFinished(null, (result_cd, result_msg, extra) => {
+    this.gigagenie.voice.svcFinished(null, (result_cd, result_msg, extra) => {
 
     });
   }
@@ -193,12 +207,16 @@ class GenieSDK extends Component {
             onKeyPress={this.handleKeyPress}
           />
           <button
-            onClick={this.sendTTS}
+            onClick={this.handleTest}
             type="button"
           >
             전송
           </button>
           {this.state.log}
+          <br />
+          세부로그: {this.state.detailLog}
+          <br />
+          패스: {this.state.pathTo}
         </div>
       );
     }
