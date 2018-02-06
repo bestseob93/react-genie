@@ -92,7 +92,7 @@ class GenieSDK extends Component {
     });
   }
 
-  handleSendTTS = (txt) => {
+  handleSendTTS = (txt='하이하이하이') => {
     alert('sendTTS called');
     const options = {
       ttstext: txt
@@ -132,7 +132,10 @@ class GenieSDK extends Component {
 
   handleActionEvent = (extra) => {
     const { AuthActions, history, location, goods } = this.props;
-
+    this.setState({
+      ...this.state,
+      log: JSON.stringify(extra)
+    });
     switch(extra.actioncode) {
       case 'ShowDetail':
         /**
@@ -141,18 +144,19 @@ class GenieSDK extends Component {
         alert(location.pathname);
         const goodsNo = goods.toJS().find(data => data.GOODS_CATEGORY === extra.parameter['NE-Prd']).GOODS_NO;
         const pathTo = `${extra.actionpath}/${goodsNo}`;
-        this.setState({
-          ...this.state,
-          log: JSON.stringify(extra),
-          detailLog: goodsNo,
-          pathTo: pathTo
-        });
+
         history.push(pathTo);
         break;
       case 'CCInform':
         this.handleSendTTS('010 2448 7085');
         break;
       case 'Login':
+      let options = {
+        ttstext: '로그인 완료'
+      }
+        this.gigagenie.sendTTS(options, (result_cd, result_msg, extra) => {
+
+        });
         AuthActions.login();
         break;
       case 'Logout':
@@ -207,7 +211,7 @@ class GenieSDK extends Component {
             onKeyPress={this.handleKeyPress}
           />
           <button
-            onClick={this.handleTest}
+            onClick={this.handleSendTTS}
             type="button"
           >
             전송

@@ -21,6 +21,12 @@ class GoodsDetail extends Component {
     this.initialize();
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if(prevProps.match.params.goods_no !== this.props.match.params.goods_no) {
+      this.initialize();
+    }
+  }
+
   initialize = async () => {
     const { GoodsActions, UiActions, match } = this.props;
     UiActions.setSpinnerVisible({ visiblity: true });
@@ -50,12 +56,11 @@ class GoodsDetail extends Component {
   }
   
   render() {
-    console.log(this.state.amount);
     const { goods } = this.props;
     return (
       <Fragment>
         <MainTitle {...this.props} GOODS_NM={goods && goods.get('GOODS_NM')} />
-        <DetailWrapper goods={goods} handleChange={this.handleChange} amount={this.state.amount} />
+        <DetailWrapper goods={goods} handleChange={this.handleChange} amount={this.state.amount} {...this.props} />
       </Fragment>
     );
   }

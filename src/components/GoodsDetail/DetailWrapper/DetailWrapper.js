@@ -78,6 +78,7 @@ class DetailWrapper extends Component {
               spec={goods.get('GOODS_SPEC')}
             />
           </div>
+          <div onClick={() => this.props.history.push('/static-root/image/gigagenie/lhstest/ShowDetail/1047134')}>dd</div>
         </section>
       );
     }
