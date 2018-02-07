@@ -1,18 +1,50 @@
 import React,  { Component } from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+import Pagination from 'components/Common/Pagination';
+import PrevButton from 'components/Common/PrevButton';
+import NextButton from 'components/Common/NextButton';
 
 class SearchList extends Component {
+  static propTypes = {
+    onChangePage: PropTypes.func.isRequired,
+    pageOfItems: PropTypes.array.isRequired,
+    searchResults: PropTypes.object.isRequired
+  }
+
+  static defaultProps = {
+    onChangePage: () => {},
+    pageOfItems: [],
+    searchResults: {}
+  }
+
+  state = {
+    pager: {}
+  }
+
+  setPage = (page) => {
+    
+  }
+
+  getPage = (totalItems, currentPage, amountOfItems) => {
+    currentPage = currentPage || 1;
+    amountOfItems = amountOfItems || 5;
+
+    const totalPages = Math.ceil(totalItems / amountOfItems);
+
+    return {
+      totalItems,
+      currentPage,
+      amountOfItems,
+      totalPages
+    };
+  }
+
   render() {
     return (
       <section className="detail_wrapper">
-        <span className="pagination">1/5</span>
         <ul className="search_wrapper">
-          <li className="menu_item">
-            <Link to="/">
-              <div className="triangle-left"></div>
-              <span>이전</span>
-            </Link>
-          </li>
+          <PrevButton onChangePage={this.props.onChangePage} />
           <li className="search_item_wrapper">
             <div className="num_circle">
               <span>1</span>
@@ -73,12 +105,7 @@ class SearchList extends Component {
               롯데)초L세이브 우유 930ML 2입 기획전
             </p>
           </li>
-          <li className="menu_item">
-            <Link to="/">
-              <span>다음</span>
-              <div className="triangle-right"></div>
-            </Link>
-          </li>
+          <NextButton onChangePage={this.props.onChangePage} />
         </ul>
       </section>
     );

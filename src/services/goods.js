@@ -1,5 +1,5 @@
 import storage from './storage';
-import { DETAIL_DATA } from './JSONdata';
+import { HOME_DATA, DETAIL_DATA } from './JSONdata';
 
 /**
  * 상품 리스트 초기 데이터 앱 실행 시 로컬 스토로지에 저장
@@ -25,12 +25,12 @@ export const initDatas = (datas) => {
 /**
  * request Goods Thumbnails and simple Data for Home.
  */
-export const requestGoodsThumbnails = (results) => {
+export const requestGoodsThumbnails = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve(results);
+      resolve(HOME_DATA);
     }, 1000);
-    if(!results) {
+    if(!HOME_DATA) {
       reject("저장된 데이터가 존재하지 않습니다.");
     }
   });
@@ -48,6 +48,24 @@ export const requestGoodsDetail = (goods_no) => {
       
       if(result) {
         resolve(result);
+      } else {
+        reject("저장된 데이터가 존재하지 않습니다.");
+      }
+    }, 1500);
+  });
+}
+
+export const requestSearchResult = (goods_category) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      let results = [];
+      DETAIL_DATA.find(data => {
+        if(data.GOODS_CATEGORY === goods_category) {
+          results.push(data);
+        }
+      });
+      if(results.length > 0) {
+        resolve(results);
       } else {
         reject("저장된 데이터가 존재하지 않습니다.");
       }

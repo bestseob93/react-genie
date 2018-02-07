@@ -8,7 +8,6 @@ import MainTitle from 'components/MainTitle';
 
 import { actionCreators as goodsActions } from 'ducks/goods.duck';
 import { actionCreators as uiActions } from 'ducks/ui.duck';
-import { HOME_DATA } from 'services/JSONdata';
 
 class Home extends Component {
   constructor(props) {
@@ -28,7 +27,7 @@ class Home extends Component {
     const { UiActions, GoodsActions } = this.props;
     UiActions.setSpinnerVisible({ visiblity: true });
     try {
-      await GoodsActions.getGoodsThumbnails(HOME_DATA);
+      await GoodsActions.getGoodsThumbnails();
       console.time();
       this.timeTravel().then(() => {
         this.toggleGoodsList(true);
