@@ -1,0 +1,95 @@
+
+.pagination {
+  font-size: 20px;
+  position: absolute;
+  right: 150px;
+}
+.search_wrapper {
+  width: 100%;
+  max-height: 435px;
+  line-height: 435px;
+  box-sizing: border-box;
+  text-align: center;
+  li {
+    text-align: initial;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: initial;
+  }
+  li.menu_item {
+    a {
+      margin: 0 auto;
+      width: 104px;
+      border: 3px solid @lottesuper;
+      border-radius: 30px;
+      height: 45px;
+      line-height: 45px;
+      text-align: center;
+      span {
+        font-weight: 600;
+        color: @lottesuper;
+        margin-top: -5px;
+        font-size: 24px;
+        letter-spacing: -1px;
+      }
+      div {
+        display: inline-block;
+      }
+      .triangle-left {
+        width: 0;
+        height: 0;
+        border-top: 8px solid transparent;
+        border-right: 16px solid #fe5743;
+        margin-right: 10px;
+        border-bottom: 8px solid transparent;
+      }
+      .triangle-right {
+        width: 0;
+        height: 0;
+        border-top: 8px solid transparent;
+        border-left: 16px solid #4c9cff;
+        margin-left: 10px;
+        border-bottom: 8px solid transparent;
+      }
+    }
+    a:focus {
+      border-color: blue !important;
+    }
+  }
+  li.search_item_wrapper {
+    width: 300px;
+    padding: 0 30px;
+    .num_circle {
+      width: 42px;
+      height: 42px;
+      line-height: 42px;
+      position: absolute;
+      border: 3px solid @lottesuper;
+      border-radius: 24px;
+      text-align: center;
+      span {
+        color: @lottesuper;
+        font-size: 20px;
+        vertical-align: middle;
+      }
+    }
+
+    .goods_rate_price_wrapper {
+      padding-bottom: 25px;
+      .dc_rate {
+        color: #fe5743;
+      }
+      strong {
+        font-size: 30px;
+      }
+      .dc_price {
+        padding-left: 10px;
+      }
+    }
+    .goods_nm {
+      color: #aaa;
+      font-size: 20px;
+      height: 20px;
+    }
+  }
+}
