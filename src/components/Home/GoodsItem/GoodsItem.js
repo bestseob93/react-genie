@@ -9,7 +9,6 @@ import { borderRadius, isScaleRequired } from 'services/utils';
  * @param {number} goodsNo index of goods
  * @param {string} imgUrl image url
  * @param {string} keywordType lottesuper search keyword type
- * @param {number} priorityRank priority rank
  */
 function GoodsItem({
   index,
@@ -18,7 +17,6 @@ function GoodsItem({
   goodsNo,
   imgUrl,
   keywordType,
-  priorityRank
 }) {
   const PUBLIC_PATH = process.env.REACT_APP_PUBLIC_PATH || '';
   

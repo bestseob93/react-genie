@@ -20,8 +20,7 @@ class GoodsList extends Component {
         GOODS_CATEGORY,
         GOODS_NO,
         IMG_URL,
-        KEYWORD,
-        PRIORITY_RANK
+        KEYWORD
       } = item;
       const isFirstAnimation = (i) => {
         if(i === 7 || i === 9 || i === 12 || i === 14) {
@@ -43,7 +42,6 @@ class GoodsList extends Component {
             goodsNo={GOODS_NO}
             imgUrl={IMG_URL}
             keywordType={KEYWORD}
-            priorityRank={PRIORITY_RANK}
             swapped={this.props.swapped}
           />
         );
@@ -57,7 +55,6 @@ class GoodsList extends Component {
             goodsNo={GOODS_NO}
             imgUrl={IMG_URL}
             keywordType={KEYWORD}
-            priorityRank={PRIORITY_RANK}
           />
         );
       }
