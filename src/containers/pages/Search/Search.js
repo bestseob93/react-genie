@@ -27,14 +27,12 @@ class Search extends Component {
 
   onChangePage = (pageOfItems) => {
     const { UiActions } = this.props;
-    UiActions.setSpinnerVisible({ visiblity: true });
-    setTimeout(() => {
-      this.setState({
-        ...this.state,
-        pageOfItems
-      });
-      UiActions.setSpinnerVisible({ visiblity: false });
-    }, 1000);
+    console.log('pageChanged');
+    console.log(pageOfItems.toJS());
+    this.setState({
+      ...this.state,
+      pageOfItems
+    });
   }
 
   initialize = async () => {
@@ -58,7 +56,7 @@ class Search extends Component {
       <Fragment>
         <MainTitle {...this.props} />
         <SearchList
-          searchResults={this.props.searchResults}
+          searchResults={this.state.wholeItems}
           pageOfItems={this.state.pageOfItems}
           onChangePage={this.onChangePage}
         />
