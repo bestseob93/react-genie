@@ -74,15 +74,6 @@ class SearchList extends Component {
   renderSearchItem = (items) => {
     console.log(items);
     return items.map((item, index) => {
-      const {
-        GOODS_NM,
-        GOODS_CATEGORY,
-        GOODS_NO,
-        IMG_URL,
-        LIST_PRICE,
-        DC_RATE,
-        PRIORITY_RANK
-      } = item;
       return (
         <SearchItem
           key={index}

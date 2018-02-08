@@ -21,7 +21,9 @@ class MainTitle extends Component {
 
   render() {
     const regx = /ShowDetail/g;
+    const searchRegx = /Search/g;
     const isDetailPage = regx.test(this.props.match.path);
+    const isSearchPage = searchRegx.test(this.props.match.path);
     if(isDetailPage) {
       return (
         <h1 className="main_title">
@@ -32,6 +34,14 @@ class MainTitle extends Component {
           }
         </h1>
       );
+    } else if(isSearchPage) {
+      return (
+        <h1 className="main_title">
+          {
+            '우유 검색결과 11건'
+          }
+        </h1>
+      )
     } else {
       return (
         <h1 className="main_title">
