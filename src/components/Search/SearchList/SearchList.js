@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Pagination from 'components/Common/Pagination';
 import PrevButton from 'components/Common/PrevButton';
 import NextButton from 'components/Common/NextButton';
-import SearchItem from './SearchItem';
+import SearchItem from '../SearchItem';
 
 class SearchList extends Component {
   static propTypes = {
