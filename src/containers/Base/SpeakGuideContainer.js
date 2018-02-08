@@ -7,7 +7,7 @@ import SpeakGuideList from 'components/SpeakGuide/SpeakGuideList';
 /**
  * SpeakGuide Container(SpeakGuide Business Logic)
  */
-class SpeakGuide extends Component {
+class SpeakGuideContainer extends Component {
   /**
    * change speak guide by page
    */
@@ -49,4 +49,4 @@ class SpeakGuide extends Component {
   }
 }
 
-export default withRouter(SpeakGuide);
+export default withRouter(SpeakGuideContainer);

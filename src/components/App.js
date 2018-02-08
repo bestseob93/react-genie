@@ -5,7 +5,7 @@ import {
   GoodsDetail,
   HeaderContainer,
   Home,
-  SpeakGuide,
+  SpeakGuideContainer,
   NoMatch,
   Search
 } from 'containers';
@@ -22,7 +22,7 @@ class App extends Component {
           <Route path={`${PUBLIC_PATH}/ShowDetail/:goods_no`} component={GoodsDetail} />
           <Route component={NoMatch} />
         </Switch>
-        <SpeakGuide />
+        <SpeakGuideContainer />
         <Core />
       </div>
     );

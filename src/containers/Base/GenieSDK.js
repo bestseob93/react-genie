@@ -222,7 +222,7 @@ class GenieSDK extends Component {
     } else {
       return (
         <div>
-          <input
+          {/* <input
             type="text"
             name="tts"
             value={this.state.ttsText}
@@ -239,7 +239,7 @@ class GenieSDK extends Component {
           <br />
           세부로그: {this.state.detailLog}
           <br />
-          패스: {this.state.pathTo}
+          패스: {this.state.pathTo} */}
         </div>
       );
     }
