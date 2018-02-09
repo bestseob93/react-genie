@@ -10,7 +10,8 @@ import { actionCreators as uiActions } from 'ducks/ui.duck';
 
 class Search extends Component {
   state = {
-    pageOfItems: []
+    pageOfItems: [],
+    paramsValue: ''
   }
 
   async componentDidMount() {
@@ -37,6 +38,9 @@ class Search extends Component {
     const { GoodsActions, UiActions, location } = this.props;
     const params = location.search.split('query=');
 
+    this.setState({
+      paramsValue: params
+    });
     console.log(location);
     UiActions.setSpinnerVisible({ visiblity: true });
 
@@ -53,7 +57,7 @@ class Search extends Component {
   render() {
     return (
       <Fragment>
-        <MainTitle {...this.props} />
+        <MainTitle {...this.props} paramsValue={this.state.paramsValue} />
         <SearchList
           searchResults={this.props.searchResults}
           pageOfItems={this.state.pageOfItems}

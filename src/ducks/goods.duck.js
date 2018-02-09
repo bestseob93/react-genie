@@ -1,6 +1,6 @@
 import { fromJS } from 'immutable';
 import { createAction, handleActions } from 'redux-actions';
-import * as goodsAPI from 'services/goods';
+import * as goodsAPI from 'services/goodsAPI';
 
 /* ACTION TYPES */
 const types = {

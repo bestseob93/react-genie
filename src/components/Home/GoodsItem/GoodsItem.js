@@ -53,7 +53,7 @@ function GoodsItem({
       <li className="goods_box" style={{marginLeft: '268px'}}>
         <Link to={{
           pathname: `${PUBLIC_PATH}/Search`,
-          search: `query=${encodeURI(goodsCategory, 'UTF-8')}}`
+          search: `query=${encodeURI(goodsCategory, 'UTF-8')}`
         }} className={`${borderRadius(index)} goods_link`}>
           <p className="goods_title">{goodsCategory}</p>
           <img alt={goodsCategory} src={imgUrl} className={isScaleRequired(imgUrl)} />

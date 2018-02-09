@@ -51,7 +51,7 @@ export const requestGoodsDetail = (goods_no) => {
       } else {
         reject("저장된 데이터가 존재하지 않습니다.");
       }
-    }, 15000);
+    }, 1500);
   });
 }
 

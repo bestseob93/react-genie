@@ -30,16 +30,16 @@ class SearchList extends Component {
     }
   }
   
-  componentWillReceiveProps(nextProps) {
-    if(this.props.pageOfItems !== nextProps.pageOfItems) {
-      console.log(this.state);
-      console.log('componentwillreceiveprops');
-      this.setState({
-        ...this.state,
-        isDataChanged: true
-      });
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if(this.props.pageOfItems !== nextProps.pageOfItems) {
+  //     console.log(this.state);
+  //     console.log('componentwillreceiveprops');
+  //     this.setState({
+  //       ...this.state,
+  //       isDataChanged: true
+  //     });
+  //   }
+  // }
 
   componentDidUpdate(prevProps, prevState) {
     // 아이템 배열 값이 바꼈을 경우 page 초기화
@@ -115,40 +115,16 @@ class SearchList extends Component {
   render() {
     let { pager } = this.state;
     console.log(pager);
-    if(!this.state.isDataChanged) {
-      return (
-        <section className="detail_wrapper">
-          <Pagination pager={pager} />
-          <ul className="search_wrapper">
-            <PrevButton setPage={() => this.setPage(pager.currentPage - 1)} disabled={pager.currentPage === 1 ? true : false} />
-            <li className="search_item_wrapper">
-              <div className="num_circle">
-                <span>1</span>
-              </div>
-              <img alt={''} width="300" height="300" src="http://image.lottesuper.co.kr/static-root/image/gigagenie/lhstest/static/media/dimm300x300.gif" />
-              <p className="goods_rate_price_wrapper">
-                <span className="dc_rate"><strong>{15}</strong>%</span><span className="dc_price"><strong>{3000}</strong>원</span>
-              </p>
-              <p className="goods_nm">
-                ""
-              </p>
-            </li>
-            <NextButton setPage={() => this.setPage(pager.currentPage + 1)} disabled={pager.currentPage === pager.totalPages ? true : false} />
-          </ul>
-        </section>
-      );
-    } else {
-      return (
-        <section className="detail_wrapper">
-          <Pagination pager={pager} />
-          <ul className="search_wrapper">
-            <PrevButton setPage={() => this.setPage(pager.currentPage - 1)} disabled={pager.currentPage === 1 ? true : false} />
-            {this.renderSearchItem(this.props.pageOfItems)}
-            <NextButton setPage={() => this.setPage(pager.currentPage + 1)} disabled={pager.currentPage === pager.totalPages ? true : false} />
-          </ul>
-        </section>
-      );
-    }
+    return (
+      <section className="detail_wrapper">
+        <Pagination pager={pager} />
+        <ul className="search_wrapper">
+          <PrevButton setPage={() => pager.currentPage === 1 ? {} : this.setPage(pager.currentPage - 1)} />
+          {this.renderSearchItem(this.props.pageOfItems)}
+          <NextButton setPage={() => pager.currentPage === pager.totalPages ? {} : this.setPage(pager.currentPage + 1)} />
+        </ul>
+      </section>
+    );
   }
 }
 
