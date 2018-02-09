@@ -53,7 +53,7 @@ function GoodsItem({
       <li className="goods_box" style={{marginLeft: '268px'}}>
         <Link to={{
           pathname: `${PUBLIC_PATH}/Search`,
-          search: `query=${goodsCategory}`
+          search: `query=${encodeURI(goodsCategory, 'UTF-8')}}`
         }} className={`${borderRadius(index)} goods_link`}>
           <p className="goods_title">{goodsCategory}</p>
           <img alt={goodsCategory} src={imgUrl} className={isScaleRequired(imgUrl)} />
@@ -65,7 +65,10 @@ function GoodsItem({
   } else {
     return (
       <li className="goods_box">
-        <Link to={`${PUBLIC_PATH}/Search?query=${goodsCategory}`} className={`${borderRadius(index)} goods_link`}>
+        <Link to={{
+          pathname: `${PUBLIC_PATH}/Search`,
+          search: `query=${encodeURI(goodsCategory, 'UTF-8')}`
+        }} className={`${borderRadius(index)} goods_link`}>
           <p className="goods_title">{goodsCategory}</p>
           <img alt={goodsCategory} src={imgUrl} className={`${isScaleRequired(imgUrl)}`} />
         </Link>

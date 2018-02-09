@@ -60,7 +60,7 @@ export const requestSearchResult = (goods_category) => {
     setTimeout(() => {
       let results = [];
       DETAIL_DATA.find(data => {
-        if(data.GOODS_CATEGORY === goods_category) {
+        if(data.GOODS_CATEGORY === decodeURI(goods_category, 'UTF-8')) {
           results.push(data);
         }
       });

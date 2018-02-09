@@ -20,7 +20,8 @@ class SearchList extends Component {
   }
 
   state = {
-    pager: {}
+    pager: {},
+    isDataChanged: false
   }
 
   componentWillMount() {
@@ -28,12 +29,31 @@ class SearchList extends Component {
       this.setPage(1);
     }
   }
+  
+  componentWillReceiveProps(nextProps) {
+    if(this.props.pageOfItems !== nextProps.pageOfItems) {
+      console.log(this.state);
+      console.log('componentwillreceiveprops');
+      this.setState({
+        ...this.state,
+        isDataChanged: true
+      });
+    }
+  }
 
   componentDidUpdate(prevProps, prevState) {
     // 아이템 배열 값이 바꼈을 경우 page 초기화
-    if (this.props.searchResults !== prevProps.searchResults) {
-        this.setPage(1);
+    if(this.props.searchResults !== prevProps.searchResults) {
+      console.log('componentdidupdate');
+      this.setPage(1);
     }
+  }
+
+  componentWillUnmount() {
+    this.setState({
+      ...this.state,
+      isDataChanged: false
+    });
   }
 
   setPage = (page) => {
@@ -45,6 +65,7 @@ class SearchList extends Component {
     const pageOfItems = items.slice(pager.startIndex, pager.endIndex + 1);
 
     console.log(pageOfItems.toJS());
+    console.log(pager);
     this.setState({
       ...this.state,
       pager
@@ -72,7 +93,9 @@ class SearchList extends Component {
   }
 
   renderSearchItem = (items) => {
-    console.log(items);
+    // if(items.size < 5) {
+    //   item.concat()
+    // }
     return items.map((item, index) => {
       return (
         <SearchItem
@@ -92,7 +115,7 @@ class SearchList extends Component {
   render() {
     let { pager } = this.state;
     console.log(pager);
-    if(!this.props.pageOfItems) {
+    if(!this.state.isDataChanged) {
       return (
         <section className="detail_wrapper">
           <Pagination pager={pager} />
@@ -113,7 +136,7 @@ class SearchList extends Component {
             <NextButton setPage={() => this.setPage(pager.currentPage + 1)} disabled={pager.currentPage === pager.totalPages ? true : false} />
           </ul>
         </section>
-      )
+      );
     } else {
       return (
         <section className="detail_wrapper">

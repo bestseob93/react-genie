@@ -3,6 +3,21 @@ import PropTypes from 'prop-types';
 
 class SearchItem extends Component {
 
+  static propTypes = {
+    index: PropTypes.number.isRequired,
+    GOODS_NM: PropTypes.string.isRequired,
+    goodsCategory: PropTypes.string.isRequired,
+    goodsNo: PropTypes.number.isRequired,
+    imgUrl: PropTypes.string.isRequired,
+    dcPrice: PropTypes.number.isRequired,
+    dcRate: PropTypes.number.isRequired
+  }
+
+  static defaultProps = {
+    index: 0,
+    GOODS_NM: '',
+    goodsCategory: ''
+  }
   render() {
     const {
       index,
@@ -13,7 +28,6 @@ class SearchItem extends Component {
       dcPrice,
       dcRate
     } = this.props;
-    console.log(this.props);
     return (
       <li className="search_item_wrapper">
         <div className="num_circle">

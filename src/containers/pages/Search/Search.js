@@ -10,7 +10,6 @@ import { actionCreators as uiActions } from 'ducks/ui.duck';
 
 class Search extends Component {
   state = {
-    wholeItems: this.props.searchResults,
     pageOfItems: []
   }
 
@@ -18,20 +17,19 @@ class Search extends Component {
     this.initialize();
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      ...this.state,
-      wholeItems: nextProps.searchResults
-    });
+  componentDidUpdate(prevProps, prevState) {
+    const prevParams = prevProps.location.search.split('query=');
+    const currentParams = this.props.location.search.split('query=');
+    if(prevParams[1] !== currentParams[1]) {
+      console.log('componentdidupdated');
+      this.initialize();
+    }
   }
 
   onChangePage = (pageOfItems) => {
-    const { UiActions } = this.props;
-    console.log('pageChanged');
-    console.log(pageOfItems.toJS());
     this.setState({
       ...this.state,
-      pageOfItems
+      pageOfItems: pageOfItems
     });
   }
 
@@ -39,6 +37,7 @@ class Search extends Component {
     const { GoodsActions, UiActions, location } = this.props;
     const params = location.search.split('query=');
 
+    console.log(location);
     UiActions.setSpinnerVisible({ visiblity: true });
 
     try {
@@ -56,7 +55,7 @@ class Search extends Component {
       <Fragment>
         <MainTitle {...this.props} />
         <SearchList
-          searchResults={this.state.wholeItems}
+          searchResults={this.props.searchResults}
           pageOfItems={this.state.pageOfItems}
           onChangePage={this.onChangePage}
         />
