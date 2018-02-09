@@ -47,7 +47,7 @@ class MainTitle extends Component {
           <div className="mini_dot one"></div>
           <div className="mini_dot two"></div>
           <div className="mini_dot three"></div>
-          <span className="mic_icon"></span>지니야, 계란 <strong>보여줘<i>!</i></strong>
+          <span className="mic_icon"></span>지니야, 계란 <strong>찾아줘<i>!</i></strong>
         </h1>
       );
     }

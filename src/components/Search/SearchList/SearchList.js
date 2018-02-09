@@ -29,17 +29,10 @@ class SearchList extends Component {
       this.setPage(1);
     }
   }
-  
-  // componentWillReceiveProps(nextProps) {
-  //   if(this.props.pageOfItems !== nextProps.pageOfItems) {
-  //     console.log(this.state);
-  //     console.log('componentwillreceiveprops');
-  //     this.setState({
-  //       ...this.state,
-  //       isDataChanged: true
-  //     });
-  //   }
-  // }
+
+  componentDidMount() {
+    global.gigagenie.media.onRemoteKeyEvent = this.handleRemoteKeyEvent;
+  }
 
   componentDidUpdate(prevProps, prevState) {
     // 아이템 배열 값이 바꼈을 경우 page 초기화
@@ -55,6 +48,15 @@ class SearchList extends Component {
       isDataChanged: false
     });
   }
+
+  handleRemoteKeyEvent = (extra) => {
+    if(extra.key === 'next') {
+      this.setPage(this.state.pager.currentPage + 1);
+    } else if(extra.key === 'prev') {
+      this.setPage(this.state.pager.currentPage - 1);
+    }
+  }
+
 
   setPage = (page) => {
     const items = this.props.searchResults;

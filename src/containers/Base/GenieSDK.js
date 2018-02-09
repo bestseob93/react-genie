@@ -73,7 +73,7 @@ class GenieSDK extends Component {
             }
           });
         }
-        // this.handleGetVoiceText();
+        this.handleGetVoiceText();
       }
     });
   }
@@ -142,12 +142,20 @@ class GenieSDK extends Component {
       ...this.state,
       log: JSON.stringify(extra)
     });
+    // alert(JSON.stringify(extra));
     switch(extra.actioncode) {
+      case 'SearchProd':
+        const goodsCategory = goods.toJS().find(data => data.GOODS_CATEGORY === extra.parameter['NE-Prd']).GOODS_CATEGORY;
+        const path = '/static-root/image/gigagenie/lhstest/Search?query=' + goodsCategory;
+        alert(goodsCategory);
+        alert(path);
+        history.push(path);
+        break;
       case 'ShowDetail':
         /**
          * Home에 뿌려진 데이터에서 발화구문하고 같은 이름을 가진 상품번호 불러온 뒤, 페이지 전환
          */
-        const goodsNo = goods.toJS().find(data => data.GOODS_CATEGORY === extra.parameter['NE-Prd']).GOODS_NO;
+        const goodsNo = goods.toJS().find(data => data.PRIORITY_RANK === extra.parameter['NE-B-Ordinal']).PRIORITY_RANK;
         const pathTo = `${extra.actionpath}/${goodsNo}`;
 
         history.push(pathTo);
@@ -207,6 +215,7 @@ class GenieSDK extends Component {
       popuptext: '롯데슈퍼 TV로부터 알람이 도착했어요!' // 팝업 문구로 android만 적용. null일 경우 Default 메시지 전달.
     }
     this.gigagenie.appinfo.sendPushMsg(options, (result_cd, result_msg, extra) => {
+      alert(JSON.stringify(extra));
       if(result_cd === 200) {
         alert("성공적으로 푸쉬 알람을 보냈습니다.");
       } else {
