@@ -29,11 +29,7 @@ class SearchList extends Component {
       this.setPage(1);
     }
   }
-
-  componentDidMount() {
-    global.gigagenie.media.onRemoteKeyEvent = this.handleRemoteKeyEvent;
-  }
-
+  
   componentDidUpdate(prevProps, prevState) {
     // 아이템 배열 값이 바꼈을 경우 page 초기화
     if(this.props.searchResults !== prevProps.searchResults) {

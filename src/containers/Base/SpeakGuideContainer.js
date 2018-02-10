@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-// import { bindActionCreators } from 'redux';
-// import { connect } from 'react-redux';
 
 import SpeakGuideList from 'components/SpeakGuide/SpeakGuideList';
 /**

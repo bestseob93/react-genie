@@ -33,7 +33,10 @@ class GenieSDK extends Component {
         this.gigagenie.voice.onVoiceCommand = this.handleVoiceCommand;
         this.gigagenie.voice.onActionEvent = this.handleActionEvent;
         this.gigagenie.voice.onRequestClose = this.handleRequestClose;
-
+        
+        /**
+         * 검색 결과 페이지인 경우 1-5 키보드 선택.
+         */
         GenieActions.setGenieLoaded();
         if(extra.devicetype === "GGENIE") {
           GenieActions.setAppDevice({
@@ -98,8 +101,107 @@ class GenieSDK extends Component {
     });
   }
 
-  handleSendTTS = (txt='하이하이하이') => {
-    alert('sendTTS called');
+  handleVoiceCommand = (event) => {
+    const { history } = this.props;
+    switch(event) {
+      case 'nextPage':
+        alert("다음페이지 호출됨");
+        break;
+      case 'prevPage':
+        history.goBack();
+        break;
+      default:
+        break;
+    }
+  }
+
+  handleActionEvent = (extra) => {
+    const {
+      UiActions,
+      AuthActions,
+      GoodsActions,
+      history,
+      location,
+      goods,
+      searchResults,
+      logged
+    } = this.props;
+
+    // alert(JSON.stringify(extra));
+    switch(extra.actioncode) {
+      case 'SearchProd':
+        /**
+         * 홈 화면에 뿌려진 데이터에서 발화구문하고 같은 이름을 가진 상품 목록을 불러온 뒤, 검색결과 페이지로 이동
+         */
+        const goodsCategory = goods.toJS().find(data => data.GOODS_CATEGORY === extra.parameter['NE-Prd']).GOODS_CATEGORY;
+        const path = '/static-root/image/gigagenie/lhstest/Search?query=' + goodsCategory;
+        alert(goodsCategory);
+        alert(path);
+        history.push(path);
+        break;
+      case 'ShowDetail':
+        /**
+         * 검색 결과에 뿌려진 데이터에서 발화구문하고 같은 번호를 가진 상품번호 불러온 뒤, 해당 상품상세 정보 페이지로 이동
+         */
+        const goodsNo = searchResults.toJS().find(data => data.PRIORITY_RANK + '번' === extra.parameter['NE-B-Ordinal']).GOODS_NO;
+        const pathTo = `${extra.actionpath}/${goodsNo}`;
+
+        history.push(pathTo);
+        break;
+      case 'CCInform':
+        this.handleSendTTS('010 2448 7085');
+        break;
+      case 'Login':
+        AuthActions.login();
+        this.handleSendTTS('로그인 되었습니다. 상품을 주문해보세요!');
+        break;
+      case 'Logout':
+        AuthActions.logout();
+        this.handleSendTTS('로그아웃 되었습니다. 다음에 또 방문해주세요!');
+        break;
+      case 'AddProd':
+        // 개수에 따른 예외 처리
+        
+        if(!logged) {
+          this.handleSendTTS('로그인을 먼저 하고 장바구니에 담아주시길 바랍니다.');
+        } else {
+          const cartGoodsNo = location.pathname.split('ShowDetail')[1];
+          const cartGoods = goods.toJS().find(data => data.GOODS_NO === cartGoodsNo);
+          GoodsActions.addProdCart(cartGoods);
+
+          // 임시.. 애니메이션
+          UiActions.setCartAnimVisible(true);
+          setTimeout(() => {
+            UiActions.setCartAnimVisible(false);
+          }, 1500);
+        }
+        break;
+      case 'Order':
+        if(!logged) {
+          this.handleSendTTS('로그인을 먼저 하고 주문해주시길 바랍니다.');
+        } else {
+          const paramsGoodsNo = location.pathname.split('ShowDetail')[1];
+          const superWeb = `http://www.lottesuper.co.kr/handler/goods/GoodsDetail?goods_no=${paramsGoodsNo}&tracking=Main_2SCL_takt02&sale_shop_sct_cd=00`
+          alert(superWeb);
+          this.handleAppPush('EXEC_WEB', superWeb);
+        }
+        break;
+      case 'Paging':
+        const keyboardEvent = document.createEvent("KeyboardEvent");
+        const initMethod = typeof keyboardEvent.initKeyboardEvent !== 'undefined' ? "initKeyboardEvent" : "initKeyEvent";
+        keyboardEvent[initMethod]('keydown', true, true, 'prev');
+        /**
+         * 이전 상품, 다음 상품목록
+         * 
+         */
+        break;
+      default:
+        history.push('/');
+    }
+  }
+
+  handleSendTTS = (txt) => {
+    alert(txt);
     const options = {
       ttstext: txt
     };
@@ -110,81 +212,13 @@ class GenieSDK extends Component {
       } else {
         // extra.reason에 voice 오류 전달
       }
-    })
-  }
-
-  handleVoiceCommand = (event) => {
-    console.log(event);
-    const { history } = this.props;
-    switch(event) {
-      case 'nextPage':
-        alert("다음페이지 호출됨");
-        console.log(this.state);
-        break;
-      case 'prevPage':
-        const pathTo = `${process.env.REACT_APP_PUBLIC_PATH}`;
-        history.push(pathTo);
-        break;
-      default:
-        break;
-    }
-  }
-
-  handleTest = () => {
-    const { history } = this.props;
-    const pathTo = `${process.env.REACT_APP_PUBLIC_PATH}`;
-    history.push(pathTo);
-  }
-
-  handleActionEvent = (extra) => {
-    const { AuthActions, history, match, goods } = this.props;
-    this.setState({
-      ...this.state,
-      log: JSON.stringify(extra)
     });
-    // alert(JSON.stringify(extra));
-    switch(extra.actioncode) {
-      case 'SearchProd':
-        const goodsCategory = goods.toJS().find(data => data.GOODS_CATEGORY === extra.parameter['NE-Prd']).GOODS_CATEGORY;
-        const path = '/static-root/image/gigagenie/lhstest/Search?query=' + goodsCategory;
-        alert(goodsCategory);
-        alert(path);
-        history.push(path);
-        break;
-      case 'ShowDetail':
-        /**
-         * Home에 뿌려진 데이터에서 발화구문하고 같은 이름을 가진 상품번호 불러온 뒤, 페이지 전환
-         */
-        const goodsNo = goods.toJS().find(data => data.PRIORITY_RANK === extra.parameter['NE-B-Ordinal']).PRIORITY_RANK;
-        const pathTo = `${extra.actionpath}/${goodsNo}`;
-
-        history.push(pathTo);
-        break;
-      case 'CCInform':
-        this.handleSendTTS('010 2448 7085');
-        break;
-      case 'Login':
-        AuthActions.login();
-        break;
-      case 'Logout':
-        AuthActions.logout();
-        break;
-      case 'AddProd':
-        // 개수에 따른 예외 처리
-        break;
-      case 'Order':
-        let superWeb = `http://www.lottesuper.co.kr/handler/goods/GoodsDetail?goods_no=${match.params.goods_no}&tracking=Main_2SCL_takt02&sale_shop_sct_cd=00`
-        this.handleAppPush('EXEC_WEB', superWeb);
-        break;
-      default:
-    }
-    alert(this.props.location.pathname);
   }
 
   handleRequestClose = () => {
-    this.gigagenie.voice.svcFinished(null, (result_cd, result_msg, extra) => {
-
-    });
+    // this.gigagenie.voice.svcFinished(null, (result_cd, result_msg, extra) => {
+    //   alert('롯데슈퍼 앱이 종료되었습니다.');
+    // });
   }
 
   handleChange = (ev) => {
@@ -192,32 +226,27 @@ class GenieSDK extends Component {
     this.setState({
       ttsText: ev.target.value
     });
-    console.log(DebugActions);
     DebugActions.handleDebugValue({
       value: ev.target.value
     });
   }
 
-  handleKeyPress = (ev) => {
-    if(ev.charCode === 13) {
-      this.setState({
-        ...this.state,
-        chgView: true
-      });
-    }
-  }
-
   handleAppPush = (msgType, url) => {
+    let self = this;
     const options = {
       target: 'COMP_APP', // 해당 G-BOX에 연계된 Companion App 타겟
       msgtype: msgType,
       msg: url,
       popuptext: '롯데슈퍼 TV로부터 알람이 도착했어요!' // 팝업 문구로 android만 적용. null일 경우 Default 메시지 전달.
     }
+    
+    alert(JSON.stringify(options));
+    
     this.gigagenie.appinfo.sendPushMsg(options, (result_cd, result_msg, extra) => {
       alert(JSON.stringify(extra));
       if(result_cd === 200) {
         alert("성공적으로 푸쉬 알람을 보냈습니다.");
+        self.handleSendTTS(`배송 예정 주소는 ${self.props.address} 입니다.`);
       } else {
         alert(JSON.stringify(extra));
       }
@@ -225,33 +254,29 @@ class GenieSDK extends Component {
   }
 
   render() {
-    const PUBLIC_PATH = process.env.REACT_APP_PUBLIC_PATH || '';
-    if(this.state.chgView) {
-      return <Redirect to={`${PUBLIC_PATH}/GoodsDetail`} />;
-    } else {
-      return (
-        <div>
-          {/* <input
-            type="text"
-            name="tts"
-            value={this.state.ttsText}
-            onChange={this.handleChange}
-            onKeyPress={this.handleKeyPress}
-          />
-          <button
-            onClick={this.handleSendTTS}
-            type="button"
-          >
-            전송
-          </button>
-          {this.state.log}
-          <br />
-          세부로그: {this.state.detailLog}
-          <br />
-          패스: {this.state.pathTo} */}
-        </div>
-      );
-    }
+    return (
+      <div>
+        {/* <input
+          type="text"
+          name="tts"
+          value={this.state.ttsText}
+          onChange={this.handleChange}
+          onKeyPress={this.handleKeyPress}
+        />
+        <button
+          onClick={this.handleSendTTS}
+          type="button"
+        >
+          전송
+        </button>
+          */}
+        {this.state.log}
+        <br />
+        세부로그: {this.state.detailLog}
+        <br />
+        패스: {this.state.pathTo}
+      </div>
+    );
   }
 }
 

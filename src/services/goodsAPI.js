@@ -24,7 +24,19 @@ export const initDatas = (datas) => {
 
 /**
  * request Goods Thumbnails and simple Data for Home.
+ * 
+ * if ajax
+ * 
+ * axios({
+ *  method: 'GET',
+ *  url: 'https://api.lottesuper.co.kr/v1/genie/thmbnails',
+ * }).then((results) => {
+ *  return results;
+ * }).catch((err) => {
+ *  if(err) throw err;
+ * });
  */
+
 export const requestGoodsThumbnails = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {

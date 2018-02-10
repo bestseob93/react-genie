@@ -23,7 +23,8 @@ export default connect(
   state => ({
     username: state.genie.get('username'),
     address: state.genie.get('address'),
-    logged: state.auth.get('isLogged')
+    logged: state.auth.get('isLogged'),
+    cart: state.goods.get('cart')
   }),
   null
 )(HeaderContainer);

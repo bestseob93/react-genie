@@ -8,13 +8,15 @@ const types = {
   GET_GOODS_THUMBS: 'GOODS/GET_GOODS_THUMBS',
   GET_GOODS_DETAIL: 'GOODS/GET_GOODS_DETAIL',
   GET_SEARCH_RESULT: 'GOODS/GET_SEARCH_RESULT',
+  ADD_PROD_CART: 'GOODS?ADD_PROD_CART'
 };
 
 const defaultState = fromJS({
   isInit: false,
   goodsThumbs: [],
   searchResults: [],
-  goodsDetail: null
+  goodsDetail: null,
+  cart: []
 });
 
 /* REDUCER */
@@ -33,6 +35,9 @@ export default handleActions({
   },
   [`${types.GET_SEARCH_RESULT}_FULFILLED`]: (state, action) => {
     return state.set('searchResults', fromJS(action.payload));
+  },
+  [types.ADD_PROD_CART]: (state, action) => {
+    return state.set('cart', state.get('cart').concat(fromJS(action.payload)));
   }
 }, defaultState);
 
@@ -41,5 +46,6 @@ export const actionCreators = {
   setInitialData: createAction(types.SET_INITIAL_DATA, goodsAPI.initDatas),
   getGoodsThumbnails: createAction(types.GET_GOODS_THUMBS, goodsAPI.requestGoodsThumbnails),
   getGoodsDetail: createAction(types.GET_GOODS_DETAIL, goodsAPI.requestGoodsDetail),
-  getSearchResult: createAction(types.GET_SEARCH_RESULT, goodsAPI.requestSearchResult)
+  getSearchResult: createAction(types.GET_SEARCH_RESULT, goodsAPI.requestSearchResult),
+  addProdCart: createAction(types.ADD_PROD_CART)
 };

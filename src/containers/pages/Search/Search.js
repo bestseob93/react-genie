@@ -16,6 +16,8 @@ class Search extends Component {
 
   async componentDidMount() {
     this.initialize();
+    // global.gigagenie.media.onRemoteKeyEvent = this.handleRemoteKeyEvent;
+    document.addEventListener('keypress', this.handleKeyPress);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -24,6 +26,39 @@ class Search extends Component {
     if(prevParams[1] !== currentParams[1]) {
       console.log('componentdidupdated');
       this.initialize();
+    }
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keypress', this.handleKeyPress);
+  }
+
+  handleKeyPress = (evt) => {
+    const { searchResults, history } = this.props;
+
+    const goodsNo = searchResults.toJS().find(data => data.PRIORITY_RANK  === parseInt(evt.key, 10)).GOODS_NO;
+    let pathTo = `/static-root/image/gigagenie/lhstest/ShowDetail/${goodsNo}`;;
+    // 1~5 키
+    history.push(pathTo);
+    console.log(evt);
+    switch(evt.charCode) {
+      case 49:
+        history.push(pathTo);
+        break;
+      case 50:
+        history.push(pathTo);
+        break;
+      case 51:
+        history.push(pathTo);
+        break;
+      case 52:
+        history.push(pathTo);
+        break;
+      case 53:
+        history.push(pathTo);
+        break;
+      default:
+        break;
     }
   }
 
