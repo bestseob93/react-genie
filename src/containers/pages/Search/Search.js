@@ -24,7 +24,6 @@ class Search extends Component {
     const prevParams = prevProps.location.search.split('query=');
     const currentParams = this.props.location.search.split('query=');
     if(prevParams[1] !== currentParams[1]) {
-      console.log('componentdidupdated');
       this.initialize();
     }
   }
@@ -76,7 +75,7 @@ class Search extends Component {
     this.setState({
       paramsValue: params
     });
-    console.log(location);
+
     UiActions.setSpinnerVisible({ visiblity: true });
 
     try {

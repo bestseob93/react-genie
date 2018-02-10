@@ -9,7 +9,7 @@ import logo from 'assets/images/logo.png';
 function Logo() {
   return (
     <h1 className="logo">
-      <Link to="/">
+      <Link to="/static-root/image/gigagenie/lhstest">
         <img src={logo} alt="롯데슈퍼" />
       </Link>
     </h1>

@@ -15,7 +15,7 @@ class SearchList extends Component {
 
   static defaultProps = {
     onChangePage: () => {},
-    pageOfItems: [],
+    pageOfItems: [{id: 1}],
     searchResults: []
   }
 

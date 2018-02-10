@@ -107,3 +107,17 @@ if (!Array.prototype.find) {
     }
   });
 }
+
+export const getCurrentPage = (path) => {
+  const regx = /ShowDetail/g;
+  const searchRegx = /Search/g;
+  const isDetailPage = regx.test(path);
+  const isSearchPage = searchRegx.test(path);
+  if(isDetailPage) {
+    return 'ShowDetail';
+  } else if(isSearchPage) {
+    return 'Search';
+  } else {
+    return 'Home';
+  }
+}

@@ -5,14 +5,18 @@ class MainTitle extends Component {
     isDataChanged: false
   };
 
+  componentDidMount() {
+    this.setState({
+      isDataChanged: false
+    });
+  }
+
   componentWillReceiveProps(nextProps) {
     console.log(this.props.GOODS_NM);
     console.log(nextProps.GOODS_NM);
-    if(this.props.GOODS_NM !== nextProps.GOODS_NM) {
-      this.setState({
-        isDataChanged: true
-      });
-    }
+    this.setState({
+      isDataChanged: true
+    });
   }
 
   componentWillUnmount() {
@@ -22,22 +26,18 @@ class MainTitle extends Component {
   }
 
   render() {
-    const regx = /ShowDetail/g;
-    const searchRegx = /Search/g;
-    const isDetailPage = regx.test(this.props.match.path);
-    const isSearchPage = searchRegx.test(this.props.match.path);
-    console.log(this.props);
-    if(isDetailPage) {
+    let { match, GOODS_NM, paramsValue } = this.props;
+    if(GOODS_NM) {
       return (
         <h1 className="main_title">
           {
             this.state.isDataChanged ?
-              this.props.GOODS_NM :
+              GOODS_NM :
               <div className="mini_loader"></div>
           }
         </h1>
       );
-    } else if(isSearchPage) {
+    } else if(paramsValue && paramsValue !== '') {
       return (
         <h1 className="main_title">
           {decodeURI(this.props.paramsValue, 'UTF-8').replace('?,', '')} 검색결과 {this.props.searchResults.size}건
