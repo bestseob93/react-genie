@@ -160,8 +160,7 @@ class GenieSDK extends Component {
         this.handleSendTTS('로그아웃 되었습니다. 다음에 또 방문해주세요!');
         break;
       case 'AddProd':
-        // 개수에 따른 예외 처리
-        
+        // TODO: 개수에 따른 예외 처리
         if(!logged) {
           this.handleSendTTS('로그인을 먼저 하고 장바구니에 담아주시길 바랍니다.');
         } else {
@@ -191,7 +190,7 @@ class GenieSDK extends Component {
         const initMethod = typeof keyboardEvent.initKeyboardEvent !== 'undefined' ? "initKeyboardEvent" : "initKeyEvent";
         keyboardEvent[initMethod]('keydown', true, true, 'prev');
         /**
-         * 이전 상품, 다음 상품목록
+         * TODO: 이전 상품, 다음 상품목록
          * 
          */
         break;

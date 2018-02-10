@@ -20,6 +20,7 @@ class SearchItem extends Component {
     goodsCategory: '',
     imgUrl: 'http://image.lottesuper.co.kr/static-root/image/gigagenie/lhstest/static/media/dimm300x300.gif'
   }
+  
   render() {
     const {
       index,
