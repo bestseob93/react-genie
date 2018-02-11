@@ -14,7 +14,6 @@ const defaultState = fromJS({
 
 export default handleActions({
   [types.SET_SPINNER_VISIBLE]: (state, action) => {
-    console.log(action);
     return state.set('isSpin', action.payload.visiblity);
   },
   [types.SET_CART_ANIM_VISIBLE]: (state, action) => {

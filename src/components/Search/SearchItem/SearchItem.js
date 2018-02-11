@@ -18,6 +18,7 @@ class SearchItem extends Component {
     index: 0,
     GOODS_NM: '',
     goodsCategory: '',
+    dcPrice: 0,
     imgUrl: 'http://image.lottesuper.co.kr/static-root/image/gigagenie/lhstest/static/media/dimm300x300.gif'
   }
   

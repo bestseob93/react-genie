@@ -54,7 +54,6 @@ class AnimatedItem extends Component {
     const {
       index,
       goodsCategory,
-      goodsNo,
       imgUrl,
     } = this.props;
 

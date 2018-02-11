@@ -9,7 +9,7 @@ import SearchItem from '../SearchItem';
 class SearchList extends Component {
   static propTypes = {
     onChangePage: PropTypes.func.isRequired,
-    pageOfItems: PropTypes.object.isRequired,
+    pageOfItems: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
     searchResults: PropTypes.object
   }
 

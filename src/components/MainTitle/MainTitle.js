@@ -13,8 +13,6 @@ class MainTitle extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(this.props.GOODS_NM);
-    console.log(nextProps.GOODS_NM);
     this.setState({
       isDataChanged: true
     });

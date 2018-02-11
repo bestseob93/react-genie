@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function SpeakGuideItem(props) {
+function SpeakGuideItem({ desc }) {
   return (
     <li className="guide_item">
-      <Link to="/"><span>"{props.desc}"</span></Link>
+      <Link to="/"><span>"{desc}"</span></Link>
     </li>
   );
 }
