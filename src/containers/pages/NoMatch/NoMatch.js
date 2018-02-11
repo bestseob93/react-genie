@@ -1,4 +1,8 @@
 import React, { PureComponent } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+import { actionCreators as genieActions } from 'ducks/genie.duck';
 
 class NoMatch extends PureComponent {
   state = {
@@ -13,7 +17,7 @@ class NoMatch extends PureComponent {
         countDown: this.state.countDown - 1
       })
     }, 1000);
-    console.log(this.state);
+    this.props.GenieActions.toggleNotFound(true);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -24,6 +28,7 @@ class NoMatch extends PureComponent {
 
   componentWillUnmount() {
     clearInterval(this.intervalId);
+    this.props.GenieActions.toggleNotFound(false);
   }
 
   render() {
@@ -39,4 +44,9 @@ class NoMatch extends PureComponent {
   }
 }
 
-export default NoMatch;
+export default connect(
+  null,
+  dispatch => ({
+    GenieActions: bindActionCreators(genieActions, dispatch)
+  })
+)(NoMatch);

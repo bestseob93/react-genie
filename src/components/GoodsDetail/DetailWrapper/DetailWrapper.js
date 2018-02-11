@@ -29,33 +29,36 @@ class DetailWrapper extends Component {
 
   render() {
     const { goods, handleChange, amount } = this.props;
-    if(!this.state.isDataChanged) {
-      return (
-        <section className="detail_wrapper">
-          <div className="animated-background">
-            <div className="bar_loader">
-              <div className="bg-masker header-top"></div>
-              <div className="bg-masker first-padding-top"></div>
-              <div className="bg-masker row-first"></div>
-              <div className="bg-masker row-first-full"></div>
-              <div className="bg-masker second-padding-top"></div>
-              <div className="bg-masker row-second"></div>
-              <div className="bg-masker row-second-full"></div>
-              <div className="bg-masker third-padding-top"></div>
-              <div className="bg-masker row-third"></div>
-              <div className="bg-masker row-third-full"></div>
-              <div className="bg-masker four-padding-top"></div>
-              <div className="bg-masker row-four"></div>
-              <div className="bg-masker row-four-full"></div>
-              <div className="bg-masker five-padding-top"></div>
-              <div className="bg-masker row-five"></div>
-              <div className="bg-masker row-five-full"></div>
-              <div className="bg-masker footer-top"></div>
-              <div className="bg-masker star-left"></div>
-            </div>
+
+    const fbLoader = (
+      <section className="detail_wrapper">
+        <div className="animated-background">
+          <div className="bar_loader">
+            <div className="bg-masker header-top"></div>
+            <div className="bg-masker first-padding-top"></div>
+            <div className="bg-masker row-first"></div>
+            <div className="bg-masker row-first-full"></div>
+            <div className="bg-masker second-padding-top"></div>
+            <div className="bg-masker row-second"></div>
+            <div className="bg-masker row-second-full"></div>
+            <div className="bg-masker third-padding-top"></div>
+            <div className="bg-masker row-third"></div>
+            <div className="bg-masker row-third-full"></div>
+            <div className="bg-masker four-padding-top"></div>
+            <div className="bg-masker row-four"></div>
+            <div className="bg-masker row-four-full"></div>
+            <div className="bg-masker five-padding-top"></div>
+            <div className="bg-masker row-five"></div>
+            <div className="bg-masker row-five-full"></div>
+            <div className="bg-masker footer-top"></div>
+            <div className="bg-masker star-left"></div>
           </div>
-        </section>
-      );
+        </div>
+      </section>
+    );
+
+    if(!this.state.isDataChanged) {
+      return fbLoader;
     } else {
       return (
         <section className="detail_wrapper">

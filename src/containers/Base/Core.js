@@ -41,7 +41,8 @@ export default withRouter(connect(
     address: state.genie.get('address'),
     genieLoaded: state.genie.get('genieLoaded'),
     goods: state.goods.get('goodsThumbs'),
-    searchResults: state.goods.get('searchResults')
+    searchResults: state.goods.get('searchResults'),
+    notFoundPage: state.genie.get('notFoundPage') 
   }),
   dispatch => ({
     GenieActions: bindActionCreators(genieActions, dispatch),

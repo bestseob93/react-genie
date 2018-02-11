@@ -34,7 +34,7 @@ export default function asyncRoute(getComponent) {
       if(Component !== null) {
         return <Component {...this.props} />
       }
-      return null; // or <div /> with a loading spinner, etc..
+      return null; // 또는 Loading
     }
   }
 }

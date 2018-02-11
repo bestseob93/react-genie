@@ -108,6 +108,10 @@ if (!Array.prototype.find) {
   });
 }
 
+/**
+ * get Page Container by location.pathname
+ * @param {string} path
+ */
 export const getCurrentPage = (path) => {
   const regx = /ShowDetail/g;
   const searchRegx = /Search/g;

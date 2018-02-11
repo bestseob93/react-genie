@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { getCurrentPage } from 'services/utils';
 
 class MainTitle extends Component {
   state = {
@@ -26,8 +27,8 @@ class MainTitle extends Component {
   }
 
   render() {
-    let { match, GOODS_NM, paramsValue } = this.props;
-    if(GOODS_NM) {
+    let { match, GOODS_NM } = this.props;
+    if(getCurrentPage(match.path) === 'ShowDetail') {
       return (
         <h1 className="main_title">
           {
@@ -37,7 +38,7 @@ class MainTitle extends Component {
           }
         </h1>
       );
-    } else if(paramsValue && paramsValue !== '') {
+    } else if(getCurrentPage(match.path) === 'Search') {
       return (
         <h1 className="main_title">
           {decodeURI(this.props.paramsValue, 'UTF-8').replace('?,', '')} 검색결과 {this.props.searchResults.size}건

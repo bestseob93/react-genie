@@ -17,6 +17,13 @@ class GenieSDK extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps.notFoundPage);
+    if(nextProps.notFoundPage === true) {
+      this.handleSendTTS('준비중인 기능입니다.');
+    }
+  }
+
   initGenie = () => {
     const { GenieActions, DebugActions } = this.props;
     const options = {

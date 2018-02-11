@@ -29,6 +29,14 @@ class SearchList extends Component {
       this.setPage(1);
     }
   }
+
+  componentWillReceiveProps(nextProps) {
+    if(this.props.searchResults !== nextProps.searchResults) {
+      this.setState({
+        isDataChanged: true
+      });
+    }
+  }
   
   componentDidUpdate(prevProps, prevState) {
     // 아이템 배열 값이 바꼈을 경우 page 초기화
@@ -62,8 +70,6 @@ class SearchList extends Component {
 
     const pageOfItems = items.slice(pager.startIndex, pager.endIndex + 1);
 
-    console.log(pageOfItems.toJS());
-    console.log(pager);
     this.setState({
       ...this.state,
       pager
@@ -111,18 +117,85 @@ class SearchList extends Component {
   }
 
   render() {
-    let { pager } = this.state;
-    console.log(pager);
-    return (
-      <section className="detail_wrapper">
-        <Pagination pager={pager} />
-        <ul className="search_wrapper">
-          <PrevButton setPage={() => pager.currentPage === 1 ? {} : this.setPage(pager.currentPage - 1)} />
-          {this.renderSearchItem(this.props.pageOfItems)}
-          <NextButton setPage={() => pager.currentPage === pager.totalPages ? {} : this.setPage(pager.currentPage + 1)} />
-        </ul>
-      </section>
-    );
+    const { pager, isDataChanged } = this.state;
+    if(!isDataChanged) {
+      return (
+        <section className="detail_wrapper">
+          <Pagination pager={pager} />
+          <ul className="search_wrapper">
+            <PrevButton setPage={() => pager.currentPage === 1 ? {} : this.setPage(pager.currentPage - 1)} />
+            <li className="search_item_wrapper">
+              <a href="/">
+              <img alt="로더" width="300" height="300" src="http://image.lottesuper.co.kr/static-root/image/gigagenie/lhstest/static/media/dimm300x300.gif" />
+              <p className="goods_rate_price_wrapper">
+                <span className="dc_rate"><strong>10</strong>%</span><span className="dc_price"><strong>1000</strong>원</span>
+              </p>
+              <p className="goods_nm">
+                검색 결과 아이템
+              </p>
+              </a>
+            </li>
+            <li className="search_item_wrapper">
+              <a href="/">
+              <img alt="로더" width="300" height="300" src="http://image.lottesuper.co.kr/static-root/image/gigagenie/lhstest/static/media/dimm300x300.gif" />
+              <p className="goods_rate_price_wrapper">
+                <span className="dc_rate"><strong>10</strong>%</span><span className="dc_price"><strong>1000</strong>원</span>
+              </p>
+              <p className="goods_nm">
+                검색 결과 아이템
+              </p>
+              </a>
+            </li>
+            <li className="search_item_wrapper">
+              <a href="/">
+              <img alt="로더" width="300" height="300" src="http://image.lottesuper.co.kr/static-root/image/gigagenie/lhstest/static/media/dimm300x300.gif" />
+              <p className="goods_rate_price_wrapper">
+                <span className="dc_rate"><strong>10</strong>%</span><span className="dc_price"><strong>1000</strong>원</span>
+              </p>
+              <p className="goods_nm">
+                검색 결과 아이템
+              </p>
+              </a>
+            </li>
+            <li className="search_item_wrapper">
+              <a href="/">
+              <img alt="로더" width="300" height="300" src="http://image.lottesuper.co.kr/static-root/image/gigagenie/lhstest/static/media/dimm300x300.gif" />
+              <p className="goods_rate_price_wrapper">
+                <span className="dc_rate"><strong>10</strong>%</span><span className="dc_price"><strong>1000</strong>원</span>
+              </p>
+              <p className="goods_nm">
+                검색 결과 아이템
+              </p>
+              </a>
+            </li>
+            <li className="search_item_wrapper">
+              <a href="/">
+              <img alt="로더" width="300" height="300" src="http://image.lottesuper.co.kr/static-root/image/gigagenie/lhstest/static/media/dimm300x300.gif" />
+              <p className="goods_rate_price_wrapper">
+                <span className="dc_rate"><strong>10</strong>%</span><span className="dc_price"><strong>1000</strong>원</span>
+              </p>
+              <p className="goods_nm">
+                검색 결과 아이템
+              </p>
+              </a>
+            </li>
+            <NextButton setPage={() => pager.currentPage === pager.totalPages ? {} : this.setPage(pager.currentPage + 1)} />
+          </ul>
+        </section>
+      );
+    } else {
+
+      return (
+        <section className="detail_wrapper">
+          <Pagination pager={pager} />
+          <ul className="search_wrapper">
+            <PrevButton setPage={() => pager.currentPage === 1 ? {} : this.setPage(pager.currentPage - 1)} />
+            {this.renderSearchItem(this.props.pageOfItems)}
+            <NextButton setPage={() => pager.currentPage === pager.totalPages ? {} : this.setPage(pager.currentPage + 1)} />
+          </ul>
+        </section>
+      );
+    }
   }
 }
 
