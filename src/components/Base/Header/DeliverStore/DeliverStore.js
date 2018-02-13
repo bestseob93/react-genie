@@ -22,7 +22,7 @@ function DeliverStore(props) {
     // TODO: logged가 false일 때 다른 페이지 뷰 뿌려주기
     return (
       <span className="delivery_store">
-        로그인이 필요한 서비스입니다.
+        로그인 후, 정확한 상품정보를 확인하세요.
       </span>
     );
   }

@@ -16,7 +16,6 @@ class Search extends Component {
 
   async componentDidMount() {
     this.initialize();
-    // global.gigagenie.media.onRemoteKeyEvent = this.handleRemoteKeyEvent;
     document.addEventListener('keypress', this.handleKeyPress);
   }
 

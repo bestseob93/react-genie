@@ -26,7 +26,7 @@ class SpeakGuideContainer extends Component {
     switch(getCurrentPage(location.pathname)) {
       case 'ShowDetail':
         this.setState({
-          guideItem: ['이 상품 두 개 담아줘', '수량변경 해줘', '로그아웃해줘']      
+          guideItem: ['한개 담아줘', '이전 페이지', '주문해줘']      
         });
         break;
       case 'Search':
