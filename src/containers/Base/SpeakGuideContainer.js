@@ -11,7 +11,7 @@ class SpeakGuideContainer extends Component {
    * change speak guide by page
    */
   state = {
-    guideItem: ['우유 보여줘', '장바구니 보여줘', '고객센터 알려줘']
+    guideItem: ['우유 보여줘', '배송지 알려줘', '고객센터 알려줘']
   }
   
   componentDidUpdate(prevProps, prevState) {
@@ -36,7 +36,7 @@ class SpeakGuideContainer extends Component {
         break;
       case 'Home':
         this.setState({
-          guideItem: ['우유 보여줘', '로그인해줘', '배송지 알려줘']
+          guideItem: ['우유 보여줘', '배송지 알려줘', '고객센터 알려줘']
         });
         break;
       default:

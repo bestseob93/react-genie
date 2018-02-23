@@ -8,7 +8,7 @@ import React from 'react';
 function CartAnim({ isCartShow }) {
   if(!isCartShow) return null;
   return (
-    <div class="animated bounceOutUp basket_ani_image">
+    <div class="animatedBounce bounceOutUp basket_ani_image">
         <img alt="cart" src="http://skysky9301.diskn.com/36lHZI3Lfu" />
     </div>
   );

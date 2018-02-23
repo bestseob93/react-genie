@@ -10,17 +10,6 @@ class AnimatedItem extends Component {
     this.handleAddEvListener();
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    // this.setState({
-    //   swappedValue: this.props.swapped
-    // });
-  }
-
-  componentWillUnmount() {
-    console.group("AnimatedItem: componentWillUnmount");
-    console.groupEnd();
-  }
-
   handleAddEvListener = () => {
     const whichTransitionEvent = () => {
       const el = document.createElement('fake');
@@ -37,6 +26,7 @@ class AnimatedItem extends Component {
         }
       }
     }
+
     this.goodTitle.addEventListener(whichTransitionEvent(), () => {
       this.goodTitle.classList.remove("animated");
       this.goodTitle.classList.remove("fadeInDown");
@@ -45,9 +35,6 @@ class AnimatedItem extends Component {
       this.goodImage.classList.remove("animated");
       this.goodImage.classList.remove("fadeInDown");
     });
-  }
-  
-  handleBlur = (ev) => {
   }
 
   render() {

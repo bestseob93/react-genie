@@ -31,7 +31,7 @@ class SearchList extends Component {
   }
   
   componentDidMount() {
-    global.gigagenie.media.onRemoteKeyEvent = this.handleRemoteKeyEvent;
+    // global.gigagenie.media.onRemoteKeyEvent = this.handleRemoteKeyEvent;
   }
 
   componentWillReceiveProps(nextProps) {

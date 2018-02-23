@@ -37,6 +37,7 @@ class NoMatch extends PureComponent {
         <div>
           <img alt="error" src="http://image.lottesuper.co.kr/static-root/image/mobile/images/common/error.png" />
           <p>쇼핑에 불편을 드려 죄송합니다.</p>
+          <p>준비중인 페이지입니다.</p>
           {this.state.countDown}초 후 이전 페이지로 돌아갑니다.
         </div>
       </div>

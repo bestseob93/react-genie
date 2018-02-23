@@ -42,7 +42,6 @@ class GoodsList extends Component {
             goodsNo={GOODS_NO}
             imgUrl={IMG_URL}
             keywordType={KEYWORD}
-            swapped={this.props.swapped}
           />
         );
       } else {

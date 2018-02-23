@@ -18,7 +18,6 @@ class Home extends Component {
 
     this.state = {
       stuffs: this.props.stuffs.toJS(),
-      swapped: false,
       first: true
     };
   }
@@ -30,7 +29,7 @@ class Home extends Component {
       await GoodsActions.getGoodsThumbnails();
       console.time();
       this.timeTravel().then(() => {
-        this.toggleGoodsList(true);
+        this.toggleGoodsList();
         this.setState({
           ...this.state,
           first: false
@@ -54,7 +53,7 @@ class Home extends Component {
   componentDidUpdate(prevProps, prevState) {
     if(!this.state.first) {
       this.timerId_5 = setTimeout(() => {
-        this.toggleGoodsList(this.state.swapped);
+        this.toggleGoodsList();
       }, 5000);
     }
   }
@@ -75,37 +74,27 @@ class Home extends Component {
     });
   }
 
-  toggleGoodsList = (secondary) => {
-    let a = this.state.stuffs;
+  toggleGoodsList = () => {
+    let stuffs = this.state.stuffs;
     const oldIndexes = [7, 9, 12, 14];
     const newIndexes = [17, 18, 19, 20];
     let i = 0;
     let arrLen = oldIndexes.length;
     for(i = 0; i < arrLen; i++) {
-      a.swap(oldIndexes[i], newIndexes[i]);
+      stuffs.swap(oldIndexes[i], newIndexes[i]);
     }
-
-    if(secondary) {
-      this.setState({
-        ...this.state,
-        stuffs: a,
-        swapped: true
-      });
-    } else {
-      this.setState({
-        ...this.state,
-        stuffs: a,
-        swapped: false
-      });
-    }
-    console.groupEnd();
+    this.setState({
+      ...this.state,
+      stuffs: stuffs,
+      swapped: false
+    });
   }
 
   render() {
     return (
       <Fragment>
         <MainTitle {...this.props} />
-        <GoodsTable goods={this.state.stuffs} swapped={this.state.swapped} />
+        <GoodsTable goods={this.state.stuffs} />
         {/* <GenieHelp genieMsg={this.props.genieMsg} /> */}
       </Fragment>
     );

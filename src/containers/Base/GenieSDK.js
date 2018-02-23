@@ -131,11 +131,15 @@ class GenieSDK extends Component {
       location,
       goods,
       searchResults,
-      logged
+      logged,
+      address
     } = this.props;
 
     // alert(JSON.stringify(extra));
     switch(extra.actioncode) {
+      case 'ShowEvent':
+        history.push('/static-root/image/gigagenie/lhstest/Event');
+        break;
       case 'SearchProd':
         /**
          * 홈 화면에 뿌려진 데이터에서 발화구문하고 같은 이름을 가진 상품 목록을 불러온 뒤, 검색결과 페이지로 이동
@@ -201,6 +205,9 @@ class GenieSDK extends Component {
          * 
          */
         break;
+      case 'DeliveryInform':
+        this.handleSendTTS(`배송지는 ${address} 입니다`);
+        break;
       default:
         history.push('/');
     }
@@ -260,29 +267,28 @@ class GenieSDK extends Component {
   }
 
   render() {
-    return (
-      <div>
-        {/* <input
-          type="text"
-          name="tts"
-          value={this.state.ttsText}
-          onChange={this.handleChange}
-          onKeyPress={this.handleKeyPress}
-        />
-        <button
-          onClick={this.handleSendTTS}
-          type="button"
-        >
-          전송
-        </button>
-          */}
-        {this.state.log}
-        <br />
-        세부로그: {this.state.detailLog}
-        <br />
-        패스: {this.state.pathTo}
-      </div>
-    );
+    return null;
+      // <div>
+      //   {/* <input
+      //     type="text"
+      //     name="tts"
+      //     value={this.state.ttsText}
+      //     onChange={this.handleChange}
+      //     onKeyPress={this.handleKeyPress}
+      //   />
+      //   <button
+      //     onClick={this.handleSendTTS}
+      //     type="button"
+      //   >
+      //     전송
+      //   </button>
+      //     */}
+      //   {this.state.log}
+      //   <br />
+      //   세부로그: {this.state.detailLog}
+      //   <br />
+      //   패스: {this.state.pathTo}
+      // </div>
   }
 }
 
